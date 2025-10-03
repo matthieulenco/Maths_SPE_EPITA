@@ -1,0 +1,453 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{ulem}        % underline
+\usepackage{tcolorbox}   % colored boxes (if needed)
+\usepackage{pifont}
+\usepackage{xcolor}
+
+\begin{document}
+
+\begin{center}
+\textbf{Mathématiques : CM}
+\end{center}
+
+\[
+\sum_{n=0}^{+\infty} u_n \in \mathbb{R} \quad \text{if } (u_n) \text{ converges } 
+\Leftrightarrow u_0 + u_1 + u_2 + \dots 
+\Leftrightarrow \lim_{n \to \infty} \sum_{k=0}^n u_k
+\]
+
+\[
+\sum_{k \geq 0} u_k \in \mathbb{R}^{\mathbb{N}} 
+\quad \Leftrightarrow \quad \sum_{k = 0} ^ {n} u_k = S_n \in \mathbb{R}
+\]
+
+\[
+\text{The notation} \sum u_n\quad \text{if we don’t know or don’t care about the first terms.}
+\]
+
+\noindent
+The two previous ones are named \textcolor{red}{\underline{Series}} as they are equal to a sequence.
+
+\vspace{0.5cm}
+
+\begin{center}
+\Large \textcolor{red}{\section*{Series}}
+\end{center}
+
+\textcolor{red}{\subsection*{Definitions:}}
+
+\textbf{\subsubsection*{Convergence and divergence:}}\bigskip
+
+\text{Let $(u_n) \in \mathbb{R}^{\mathbb{N}}$ be a sequence and $(S_n) \in \mathbb{R}^{\mathbb{N}}$ the sequence of its partial sums, i.e.}
+\[
+S_n = \sum_{k=0}^n u_k.
+\]
+
+We call \underline{series} of the sequence $(u_n)$ the general term $S_n$ and denote
+\[
+\sum u_n.
+\]
+
+\text{We say \(\sum u_n\) is \textcolor{red}{convergent} if and only if $(S_n)$ converges, else \(\sum u_n\) \textcolor{red}{diverges}.}
+
+\vspace{0.5cm}
+
+\textbf{Example:} \quad 
+\(\sum q^n\) : geometric series of general term \(q^n\).
+
+\vspace{0.5cm}
+
+\text{Let $(S_n) \in \mathbb{R}^{\mathbb{N}}$ (the sequence of partial sums). We have:}\bigskip
+
+\text{For $n \in \mathbb{N}$,}
+\[
+S_n = \sum_{k=0}^n q^k = 1 + q + q^2 + \dots + q^n.
+\]
+
+\[
+\Rightarrow q \neq 1 \quad \Rightarrow \quad 
+S_n = \frac{1 - q^{n+1}}{1-q}.
+\]
+
+\[
+\lim_{n \to +\infty} S_n =
+\begin{cases}
+\frac{1}{1-q}, & \text{if } |q| < 1, \\[6pt]
+\infty, & \text{if } |q| \geq 1.
+\end{cases}
+\]
+
+\[
+\Rightarrow \text{diverges if else.}
+\]
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!100!black,title=\textcolor{black}{Conclusion}]
+$\sum q^n$ \textcolor{red}{converges when $|q| < 1$} with
+\[
+\sum_{n=0}^{+\infty} q^n = \frac{1}{1-q},
+\]
+and \textcolor{red}{diverges when $|q| \geq 1$}.
+\end{tcolorbox}
+
+---
+
+\textbf{Proposition:} \bigskip
+
+
+\text{Let $\sum u_n$ and $\sum v_n$ be two numerical series and $\lambda \in \mathbb{R}$.\\ \\
+Then we have:}
+\bigskip
+
+\begin{enumerate}
+  \item If $\sum u_n$ and $\sum v_n$ converge, then $\sum (u_n + v_n)$ converges.
+  \item If $\sum u_n$ converges, then $\sum \lambda u_n$ converges.
+  \item If $\sum u_n$ converges and $\sum v_n$ diverges, then $\sum (u_n+v_n)$ diverges.
+  \item If $\sum u_n$ diverges and $\sum v_n$ diverges, then \underline{we can’t tell anything}.
+\end{enumerate}
+
+\newpage
+\subsubsection*{Sum and Remainders of a Series}
+
+\text{Let $\sum u_n$ be a numerical series. We call:} \bigskip
+
+\text{\underline{Sum of $\sum u_n$} the following limit \textcolor{red}{(in case of convergence)}:}
+  \[
+  \lim_{n \to +\infty} \sum_{k=0}^n u_k = S_n,
+  \]
+  \text{where $S_n$ is the \textcolor{red}{sum of a convergent series}.}
+
+\[ \text{Example :} \sum_ {} {q^n} \text{ converges if and only if } |q| < 1 \quad \text{and in that case:}
+\]
+
+\[
+S_n = \lim_{n \to +\infty} S_n = \frac{1}{1-q}
+\]
+
+
+\textcolor{red}{\underline{Necessary condition of convergence:}}
+
+\[
+\sum u_n \text{ convergent } \Rightarrow \lim_{n \to +\infty} u_n = 0.
+\]
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+\textbf{Contrapositive:}  
+If $\lim_{n \to +\infty} u_n \neq  0$ $\Rightarrow$ $\sum u_n$ \textcolor{red}{diverges}.
+\end{tcolorbox}
+
+\textcolor{red}{\subsection*{Positive Term Series:}}\bigskip
+
+\text{We call \textcolor{red}{PTS (positive term series)} any series $\sum u_n$ such that $\forall$ n $\in$ $\mathbb{N}$ \; $u_n \geq 0 $. \\}\bigskip
+
+\textbf{Proposition:} \text{Let $\sum u_k$ be a PTS and $(S_n)$ its sequence of partial sums. } 
+
+\[
+\text{Then: } \sum u_k \text{ is convergent } \Leftrightarrow (S_n) \text{ is bounded}.
+\]
+\\
+Let $(u_n)$, $(v_n)$ be two positive sequences such that: $\forall {n} \in \mathbb{N}$, 0 $\leq$ $u_n$ $\leq$ $v_n$,\\
+\\ Then :
+\[
+\begin{cases}
+
+\sum v_n \text{ is convergent } \Rightarrow \sum u_n \text{ is convergent } \\[6pt]
+
+\sum u_n \text{ is divergent } \Rightarrow \sum v_n \text{ is divergent }
+
+\end{cases}
+\]
+\text{Ex :} \\
+\[
+\sum \frac{1}{n(sin(n))} = u_n
+\]
+\bigskip
+\[
+\forall \, n \in \mathbb{N^*}, 0 \leq |sin(n)| \leq 1 \Rightarrow u_n \ge \frac{1}{n} \text{ but} \sum \frac{1}{n} \text{ diverges} \Rightarrow \sum u_n \text{ diverges}
+\]
+\bigskip
+\subsubsection*{Riemann Series Theorem}
+
+\textcolor{red}{Definition :} \\
+
+\text{We call \textcolor{red}{Riemann series} any series of general term :}
+\[
+\textcolor{red}{\frac{1}{n^\alpha}, \alpha \in \mathbb{R}}
+\]
+
+\text{Ex :} \\
+\[
+    \sum \frac{1}{n} , \sum \frac{1}{n^2}, \sum \frac{1}{n^\frac{9}{2}}
+\] 
+\\
+
+\textcolor{red}{Riemann theorem :}\\
+\[
+\forall \,\alpha \in \mathbb{R}, \textcolor{red}{\sum{\frac{1}{n^\alpha}}} \textcolor{red}{   converges \Leftrightarrow \alpha > 1} 
+\]
+\\
+\text{Ex :} 
+\[
+    u_n = \frac{2 + cos(n)}{n^4}, \forall n\in \mathbb{N^*}; 0 \leq \frac{2 + cos(n)}{n^4}\leq \frac{3}{n^4}
+\] \\
+
+\[
+\text{As } \sum \frac{2 + cos(n)}{n^4} \text { is a PTS :}
+\] \\
+
+\[
+\begin{cases}
+    \sum u_n \text{ is a PTS}\\
+    \sum \frac{1}{n^4} \text{ converges (Riemann } \alpha = 4 > 1\text{)} \Rightarrow \frac{3}{n^4} \text{ converges}
+\end{cases}
+\] \\
+
+\text{Thus :} \[
+\sum \frac{2 + cos(n)}{n^4} \text{ converges}
+\] 
+\\
+\textcolor{red}{\subsubsection*{Proposition :}}
+{\textcolor{red}{\ding{172}}}
+\[
+\text{Let (} u_n \text{) and (} v_n\text{) two sequences such that :}
+\] \\
+\[
+u_n = u_n = o(v_n) \quad(\frac{u_n}{v_n} \to 0) 
+\]
+\\
+\text{then :} 
+\[
+\sum v_n \text{ converges} \Rightarrow u_n \text { converges}
+\]
+\\
+{\textcolor{red}{\ding{173}}}\\
+\[\text{if } u_n \underset{n \to +\infty}{\sim} v_n \text{ then :} \sum u_n \text{ same nature as } \sum v_n
+\] \\
+{\textcolor{red}{\ding{174}}}\\
+\[
+\text{if } u_n = O(v_n) \text{ then :}
+\] 
+\[
+\sum v_n \text{ converges} \Rightarrow u_n \text { converges}
+\] \\
+{\ding{172}}\\
+\text{Ex :}
+\[
+\sum e^{-\sqrt{n}} \text{ (PTS)}
+\]
+\[
+n^2 \times e^{-\sqrt{n}}  \underset{n \to +\infty}{\to} 0
+\]
+\[
+\frac{e^{-\sqrt{n}}}{\frac{1}{n^2}} \Rightarrow e^{-\sqrt{n}} = o(\frac{1}{n^2}) 
+\]
+\[\Rightarrow [\sum \frac{1}{n^2} \text{ converges (Riemann series where } \alpha > 1\text{)} \Rightarrow \sum  e^{-\sqrt{n}} \text{ converges } ]
+\]
+\\
+\\
+{\ding{173}}\\
+\text{Ex :} 
+\[
+\sum ln(\frac{n+1}{n}) = \sum ln(1 + \frac{1}{n}) \Rightarrow ln(1+\frac{1}{n}) \underset{n \to +\infty}{\sim} \frac{1}{n}
+\] \\
+\[{1}{n}
+\Rightarrow \sum ln(1+\frac{1}{n}) \text{ of same nature as} \sum \frac{1}{n} \Rightarrow \sum ln(1+\frac{1}{n}) \text{ diverges}
+\]
+\bigskip
+\textcolor{red}{\subsubsection*{Definition :}}
+\[
+u_n \underset{+\infty}{\sim} v_n \Leftrightarrow \frac{u_n}{v_n} \underset{n \to +\infty}{\to} 1 \Rightarrow \exists \: n_0 \in \mathbb{N}, [n\ge n_0 \Rightarrow \text{sign of } u_n = \text{sign of } v_n] 
+\]
+\[
+\Leftrightarrow \exists n_0 \in \mathbb{N}, [n \ge n_0 \Rightarrow u_n \times v_n \ge 0]
+\]
+\\
+\textcolor{red}{Proposition :}
+\[
+\textcolor{red}{\text{Let } (u_n)_{n \,\in \,\mathbb{N}} \in \mathbb{R}^\mathbb{N}. \text{Then : }\sum(u_{n+1} -u_n) \text{ converges } \Leftrightarrow  (u_n)_{n\, \in\,\mathbb{N}} \text{ converges} }
+\]
+
+\textcolor{red}{Proof :}
+\[
+\text{Let } (S_n)_{n \,\in \,\mathbb{N}} \in \mathbb{R}^\mathbb{N} \text{ such that : }
+\forall \, n \in \mathbb{N}, S_n = \sum_{k=0}^{n}{(u_{k+1} - {u_k}) = \sum_{k=0}^{n}{u_{k+1}} - \sum_{k=0}^{n}{u_{k}}} 
+\]
+\[
+= \sum_{k=1}^{n+1}{u_{k}} - \sum_{k=0}^{n}{u_{k}} = u_{n+1} - u_{0} \Leftrightarrow \underset{n \to +\infty}{lim} S_n = \underset{n \to +\infty}{lim} (u_{n+1} - u_0)
+\]
+\bigskip	
+\[
+\implies [S_n \underset{n\to+\infty}{\to} l \Leftrightarrow u_n \underset{n\to+\infty}{\to} l\, +\,u_0\,]
+\]
+\newpage
+\text{Ex :} \[
+\forall \, n\in \mathbb{N}^*, u_n = 1+ \frac{1}{2} +...+ \frac{1}{n} - ln(n) \hookleftarrow \text{nature of } (u_n)?
+\]
+\[
+= \sum_{k=1}^{n}{\frac{1}{k}} - ln(n)
+\]
+\bigskip
+\[
+u_{n+1} -u_n = \sum_{k=1}^{n+1}{\frac{1}{k}} - ln(n+1) -\sum_{k=1}^{n}{\frac{1}{k}} - ln(n)
+\]
+\bigskip
+\[
+= \frac{1}{n+1} +ln(\frac{n}{n+1} = \frac{1}{n+1} + ln(1 -\frac{1}{n+1})
+\]
+\bigskip
+\[
+\frac{1}{n+1} - \frac{1}{n+1} - \frac{1}{2} \times \frac{1}{(n+1)^2} + o(\frac{1}{n^2}) = -\frac{1}{2} \times \frac{1}{(n+1)^2} + o(\frac{1}{n^2}) \underset{+\infty}{\sim} -\frac{1}{2} \times \frac{1}{n^2}
+\]
+\bigskip
+\[
+\implies \sum{u_{n+1} - u_n} \text{ converges} \Leftrightarrow u_n \text{ converges}
+\]
+
+\textcolor{red}{\subsection*{The Rules :}}
+
+\textcolor{red}{\subsubsection*{Riemann's rule :}}
+\bigskip
+\textcolor{red}{Theorem :}\\
+
+\textcolor{red}{Let ($u_n$) a positive term series :}
+\bigskip
+
+\textcolor{red}{If $\exists \, \alpha\in\mathbb{R}, \: \alpha>1, \: n^\alpha \times u_n \underset{n\to+\infty}{\to} 0$
+then : $\sum{u_n}$ converges} 
+\bigskip
+
+
+\textcolor{red}{Proof :}\\
+
+\[ n^\alpha \times u_n \, \underset{n\to+\infty}{\to} 0 \Leftrightarrow \frac{u_n}{\frac{1}{n^\alpha}} \: \underset{n\,\to \,+\infty}{\to} 0 \Leftrightarrow u_n = o(\frac{1}{n^\alpha})
+\]
+\bigskip
+
+\text{Thus : [ $\sum{\frac{1}{n^\alpha}}$ converges (Riemann $\alpha > 1) \implies \sum u_n$ converges ]}
+\newpage
+\textcolor{red}{\subsubsection*{D'Alembert's rule :}}
+\bigskip
+
+\textcolor{red}{Theorem :}\\
+
+\textcolor{red}{Let ($u_n$) a strictly positive sequence such that : }\\
+
+\textcolor{red}{$\frac{u_{n+1}}{u_n} \: \underset{\,n \,\to \,+\infty}{\to} l$ where $l \in \mathbb{R} \:\cup \: \{ +\infty\}$}
+
+\[
+\textcolor{red}{ \text{Then : }
+\begin{cases}
+    l < 1 \Rightarrow \sum u_n \text{ converge} \\
+    l > 1 \Rightarrow \sum u_n \text{ diverge}
+\end{cases}
+}
+\]
+
+\text{Ex : 
+$\forall \, n\in \mathbb{N}, u_n = \frac{1}{n!}$}\\
+
+\text{
+$ \frac{u_{n+1}}{u_n} = \frac{1}{(n+1)!} \times n! = \frac{1}{n+1} \: \underset{\,n \, \to \, +\infty}{\to} 0 <1 \implies \sum{u_n}$ converges 
+}
+\textcolor{red}{\subsubsection*{Cauchy's rule :}}
+\bigskip
+
+\textcolor{red}{Theorem :}\\
+
+\textcolor{red}{Let $u_n$ a strictly positive sequence such that :}
+
+\[
+\textcolor{red}{\sqrt[n]{u_n} \underset{\, n\, \to \, +\infty}{\to} l \text{ where l } \in \mathbb{R_+} \: \cup \:\{+\infty\}}
+\] \\
+\[
+\textcolor{red}{\text{Then :} \begin{cases}
+    \,l < 1 \implies \sum{u_n} \text{ converges}\\
+    \, l< 1\implies \sum{u_n} \text{ diverges}
+\end{cases}}
+\]
+
+\text{Ex :}
+\[
+\forall \, n\in\mathbb{N}^*, u_n = (\frac{n}{n+1})^{n^2} 
+\]
+\[
+\sqrt[n]{u_n} = (u_n)^\frac{1}{n} = (\frac{n}{n+1})^n 
+\text{ and we know that } (\frac{n}{n+1}) \underset{\, n\, \to \, +\infty}{\to} 1
+\]
+\[
+\text{Moreover, } e^{nln(\frac{n}{n+1})} = e^{nln(1-\frac{1}{n+1})} 
+\text{we have } n\times ln(1 - \frac{1}{n+1}) \underset{\,+\infty}{\sim} {-1} 
+\]
+\[
+\implies e^{nln(\frac{n}{n+1})} \underset{\,+\infty}{\sim} {e^{-1}} 
+\]
+
+\newpage
+
+\textcolor{red}{\subsection*{Series with Arbitrary terms :}}\bigskip
+
+\textcolor{red}{\subsubsection*{Alternating Series}}
+\bigskip
+
+\textcolor{red}{Definition :}\\
+
+\textcolor{black}{Let ($u_n$) be a real sequence. We say that ($u_n$) is alternating if there exist} \\
+
+\textcolor{black}{a positive real sequence ($a_n$) such that $\forall \, n \in \mathbb{N}$ : }
+
+\textcolor{red}{\[
+u_n = (-1)^na_n \text{ or } u_n = (-1)^{n+1}a_n
+\]} \\
+\textcolor{red}{We say that a numerical series $\sum{u_n}$ is alternating if the sequence ($u_n$) is alternating}\bigskip
+\bigskip
+\\
+\textcolor{red}{\textbf{Special criterion for alternating series :}}
+\bigskip
+
+\textcolor{red}{Leibniz Criterion :}\\
+
+\text{Let ($u_n$) be an alternating real sequence.} \\
+
+\text{
+If ($|u_n|$) is decreasing and converges to 0, then :
+} \\
+
+\[
+\textcolor{red}{\begin{cases}
+\,\text{The series }\sum{u_n} \text{ converges} \\
+\,\forall \, n \in \mathbb{N}, |R_n| \leq |u_{n+1}|
+\end{cases}} \\
+\]\\
+
+\text{Where ($R_n$) is the sequence of remainders associated with $\sum{u_n}$}\\
+
+\text{Ex :} \\
+
+\text{Let $\alpha \in \mathbb{R}$. Then :} \\
+\[
+\sum{\frac{(-1)^n}{n^\alpha} \text{ converges if and only if } \alpha > 0}
+\]
+
+\newpage
+\textcolor{red}{\subsubsection*{Absolute Convergence}}
+\bigskip
+
+\textcolor{red}{Definition :}\\
+
+\textcolor{red}{A numerical series $\sum{u_n}$ is said to converge absolutely if the series $\sum{|u_n|}$} 
+
+\textcolor{red}{ converges.} \\
+
+\textcolor{red}{Theorem :} \\
+
+\text{If $\sum{u_n}$ is a numerical series that converges absolutely, then $\sum{u_n}$ also converges} \\
+
+\textcolor{red}{Definition :} \\
+
+\textcolor{black}{A convergent series that is not absolutely convergent is called }
+
+\textcolor{black}{conditionally convergent (or semi-convergent).}
+
+\end{document}
+

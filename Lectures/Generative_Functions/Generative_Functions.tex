@@ -1,0 +1,189 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{ulem}        % underline
+\usepackage{tcolorbox}   % colored boxes (if needed)
+\usepackage{pifont}
+\usepackage{xcolor}
+
+\begin{document}
+
+\begin{center}
+\textbf{Mathématiques : CM}
+\end{center}
+
+\[
+(\Omega, P(\Omega), \mathbb{P}) \Leftrightarrow \\
+\]
+
+\bigskip
+\begin{center}
+\text{A random variable \( X \) is defined by:}
+\[
+X : \Omega \rightarrow \mathbb{R}
+\quad \text{such that} \quad
+\omega \mapsto X(\omega)
+\]
+\bigskip
+
+\text{The generative function is defined by :}
+\[
+P : \mathbb{R} \rightarrow \mathbb{R}
+\quad t \mapsto a_0*t^0 + a_1 * t^1 + a_2 * t^2 +...+a_n * t^n
+\]
+\[
+\text{\{(X = k), k } \in X(\Omega) \text{ \} = partition of }\Omega
+\]
+
+\end{center}
+
+
+\begin{center}
+\Large \textcolor{red}{Generating Function}
+\end{center}
+\subsection{Definition :}
+\[
+\text{Let X a random variable such that } X(\Omega) = \left[\,|0, n|\,\right]
+, n \in \mathbb{N}^*.
+\]
+\[
+\text{ we call generating function of X the following polynomial :}
+\]
+\[
+  G_X : \begin{cases}
+    \mathbb{R} \rightarrow \mathbb{R}\\
+ G \mapsto \sum_{k \in X(\Omega)}{P(X = k) * t^k}
+\end{cases}
+\]
+
+\textcolor{red}{Remarks}
+
+ \[\alpha(\Omega) \text{ can be different we can have : X}(\Omega) \subset \left[\,|\alpha, n|\,\right] \]
+
+\subsection{Bernouilli :}
+
+\[
+X \sim B(P) \Leftrightarrow
+\begin{cases}
+X (\Omega) = \{0,1\}\\
+P(X= 0) = (1-p), P(X= 1) = p \\
+\end{cases}
+\]
+\[
+\Leftrightarrow G_X \begin{cases}
+\mathbb{R} \rightarrow \mathbb{R}\\
+t \mapsto (1-p) + pt
+\end{cases}
+\]
+
+\subsubsection{Expected value and variance :}
+
+\textcolor{red}{Theorem :}
+
+\text{Let X a random variable and $G_X$ its generative function :} \\
+\[
+\begin{cases}
+    G_X(1) = 1 \\
+    \mathbb{E}(X) = G_X'(1)\\
+    \mathbb{V}(X) = G_X''(1) + G_X'(1) - (G_X'(1))^2
+\end{cases}
+\]
+\bigskip
+\subsubsection{Proof :}
+
+\text{By definition :} 
+\[
+  G_X : \begin{cases}
+    \mathbb{R} \rightarrow \mathbb{R}\\
+ t \mapsto \sum_{k = 0}^{n}{P(X = k) * t^k}
+\end{cases}
+\]
+\[
+\Rightarrow G_X(1) = \sum_{k = 0}^{n}{P(X = k) = 1} \text{  because } \{(X = k), k\in  \left[\,|0, n|\,\right]\} \text{ is a partition of } \Omega
+\]
+\[
+\Rightarrow G_X : \begin{cases}
+    \mathbb{R} \rightarrow \mathbb{R} \\
+    t \mapsto \sum_{k=1}^{n}{k \times P(X = k) \times t^{k}} 
+\end{cases} 
+\]
+\[
+\Rightarrow G_X' : \begin{cases}
+    \mathbb{R} \rightarrow \mathbb{R} \\
+    t \mapsto \sum_{k= 1}^{n}{k \times P(X  = k) \times t^{k-1}} \Rightarrow G_X' = \sum_{k= 1}^{n} = \sum_{k= 0}^{n}{k \times P(X  = k)} = \mathbb{E}(X)
+\end{cases}
+\]
+\[
+\mathbb{V}(X) = \mathbb{E}(X)-(\mathbb{E}(X))^2 = \mathbb{E}(X^2) - E(X)^2
+\]
+\bigskip
+\subsubsection{Koenij-Huygens Theorem :}
+
+\[
+\mathbb{V}(X) = \mathbb{E} ((X - \mathbb{E}(X))^2) \\
+\]
+\[
+\mathbb{V}(X) = \mathbb{E}(X^2) - \mathbb{E}^2(X))\\
+\]
+\[
+G_X(t) = \sum_{k = 0}^{n}{P(X = k) \times t^k}
+\]
+\[
+G_X'(t) = \sum_{k = 1}^{n}{k \times P(X = k) \times t^{k-1}}
+\]
+\[
+G_X''(t) = \sum_{k = 2}^{n}{k(k-1) \times P(X = k) \times t^{k-2}}
+\] \\
+\text{We have : } \[ k(k-1)P(X = k) \times t^{k - 2} =
+k^2 \times P(X = k) \times t^{k - 2} - k * P(X = k) \times t^{k-2} 
+\]
+\[
+\Rightarrow \sum_{k = 2}^{n}{k^2 \times P(X = k) \times t^{k-2}} - \sum_{k = 2}^{n}{k \times P(X = k) \times t^{k-2}} = G_X''(t)
+\]
+\[
+\Rightarrow G_X''(1)= \sum_{k = 0}^{n}{k^2 \times P(X = k) } - \sum_{k = 0}^{n}{k \times P(X = k) }
+\]
+\[
+\Rightarrow G_X''(1) = \mathbb{E}(X^2) - E(X) \text{ (1) }
+\] \\
+\text{(1)} \[
+\Rightarrow G_X''(1) + G_X'(1) = \mathbb{E}(X^2)
+\] 
+\[
+\Rightarrow G_X''(1) + G_x'(1) - (G_x'(1))^2 = \mathbb{E}(X^2) - \mathbb{E}(X)
+\]
+\[
+\Rightarrow G_X''(1) + G_x'(1) - (G_x'(1))^2 = \mathbb{V} (X)
+\]
+
+\subsection{X + Y :}
+\text{Let X and Y two finite random variable then :}
+\[
+G_{X+Y} : \begin{cases}
+\mathbb{R} \rightarrow \mathbb{R} \\
+t \mapsto G_X(t) \times G_Y(t)
+\end{cases}
+\]
+\[
+\Leftrightarrow G_{X+Y} = G_X \times G_Y
+\]
+\text{Ex :}
+\[
+Y \sim B(n, p) \Leftrightarrow \begin{cases}
+    Y(\Omega) =  \left[\,|0, n|\,\right] \\
+    \forall k\in Y(\Omega), P(Y = k) = \binom{n}{k} \times p^k \times q^{n-k}
+ \end{cases}
+\]
+\[
+\Leftrightarrow Y = \sum_{i =1}^{n}{X_i}
+\]
+\[
+G_Y = \prod_{i=1}^{n} {G_{X_i} :  t \mapsto(q + pt)^n = \sum_{k = 0}^{n} {\binom{n}{k} \times q^{n-k}\times (pt)^k}}
+\]
+\[
+\sum_{k = 0}^{n} {\binom{n}{k} \times q^{n-k}\times p^k \times t^k}
+\]
+\[
+\Rightarrow \mathbb{P}(Y = t) \Leftrightarrow G_{X+Y} = G_X \times G_Y
+\]
+\end{document}
