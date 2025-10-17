@@ -5,6 +5,9 @@
 \usepackage{tcolorbox}   % colored boxes (if needed)
 \usepackage{pifont}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{trees} % for tree structures
+
 
 \begin{document}
 
@@ -22,7 +25,7 @@
 \[
 X : \Omega \rightarrow \mathbb{R}
 \quad \text{such that} \quad
-\omega \mapsto X(\omega)
+\Omega \mapsto X(\Omega)
 \]
 \bigskip
 
@@ -194,4 +197,162 @@ G_Y = \prod_{\,i\,=\,1}^{n} {G_{X_i} :  t \mapsto(q + pt)^n = \sum_{k = 0}^{n} {
 \[
 \Rightarrow \mathbb{P}(Y = t) \Leftrightarrow G_{X+Y} = G_X \times G_Y
 \]\\
+
+
+
+
+\bigskip
+
+\subsection*{Definition}
+
+Let $(\Omega, P(\Omega), \mathbb{P})$ be a probability space.  
+We call a \textbf{Discrete Infinite Random Variable} a random variable $X$ such that $X(\Omega)$ is indexable by $\mathbb{N}$, i.e., there exists a bijection from $\mathbb{N}$ to $X(\Omega)$. We then denote:
+
+\[
+X(\Omega) = \{ x_k \mid k \in \mathbb{N} \}.
+\]
+
+Hence, we will only consider the cases when $X(\Omega) \subset \mathbb{N}$, i.e., $X$ takes only integer values.
+
+\subsection*{Distribution of $X$}
+
+We define the distribution of $X$ with $P(X = k)$, $k \in X(\Omega)$ where $X(\Omega) \subset \mathbb{N}$. Then:
+
+\[
+\sum_{k=0}^{+\infty} P(X = k) = P(\Omega) = 1.
+\]
+
+Note that if $k = 0$, $X(\Omega) = \mathbb{N}$.
+
+\subsection*{Geometric Distribution}
+
+\begin{tikzpicture}[
+  grow=right,
+  level distance=35mm,
+  sibling distance=25mm,
+  edge from parent/.style={draw, -latex},
+  every node/.style={font=\footnotesize},
+  sloped
+]
+\node {Coin 1}
+  child { node {H}
+    child { node {HH} edge from parent node[above] {$\frac{1}{2}$} }
+    child { node {HT} edge from parent node[below] {$\frac{1}{2}$} }
+    edge from parent node[above] {$\frac{1}{2}$}
+  }
+  child { node {T}
+    child { node {TH} edge from parent node[above] {$\frac{1}{2}$} }
+    child { node {TT} edge from parent node[below] {$\frac{1}{2}$} }
+    edge from parent node[below] {$\frac{1}{2}$}
+  };
+\end{tikzpicture}
+
+\begin{tikzpicture}
+  \fill[fill=yellow] (0,0) -- (1,0) -- (0.5,0.866) -- cycle;
+  \node at (0.5,0.4) {\textbf{!}};
+\end{tikzpicture}
+
+
+Infinite number of trials.  \\ 
+
+$X$ : the rank of first success, or the number of trials until the first success.
+
+\begin{itemize}
+  \item $X(\Omega) = \{1,2,3,\dots\} = \mathbb{N}^*$
+  \item $\forall k \in \mathbb{N}^*, \quad P(X = k) = q^{k - 1} \cdot p \quad \Leftrightarrow \quad X \sim \text{Geom}(p)$
+\end{itemize}
+
+Consider the series with general term $P(X = k) = q^{k-1} p$:
+\[
+\sum_{k \in X(\Omega)} q^{k-1} p = (1-q) \sum_{k \ge 1} q^{k-1}.
+\]
+
+This geometric series converges for $q \in (0,1)$:
+\[
+\sum_{k=1}^{+\infty} q^{k-1} = \sum_{k=0}^{+\infty} q^k = \frac{1}{1-q} \quad \implies \quad (1-q) \sum_{k=1}^{+\infty} q^{k-1} = 1.
+\]
+
+\subsection*{Expectation and Variance}
+
+Let $X$ be a discrete infinite random variable with $X(\Omega) = \mathbb{N}$. Then:
+
+\begin{itemize}
+  \item The expected value of $X$ is
+  \[
+    \mathbb{E}(X) = \sum_{k \in X(\Omega)} k \, P(X = k),
+  \]
+  provided the series converges.
+  \item The variance of $X$ is
+  \[
+    \mathbb{V}(X) = \sum_{k \in X(\Omega)} (k - \mathbb{E}(X))^2 P(X = k),
+  \]
+  provided $\mathbb{E}(X)$ exists and $\sum k^2 P(X=k)$ converges.
+\end{itemize}
+
+\textbf{Remark:} Under the existence conditions, we have
+\[
+\mathbb{V}(X) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2.
+\]
+
+\subsection*{Properties of $\mathbb{E}$ and $\mathbb{V}$}
+
+\text{Let X and Y two Infinite Discrete Random Value with $\mathbb{E}$ and $\mathbb{V}$ and $(a,b) \in \mathbb{R}^2$}
+
+\text{Then :}
+
+\[
+\mathbb{E}(X + Y) = \mathbb{E}(X) + \mathbb{E}(Y) \\
+\mathbb{E}(aX + bY) = a\mathbb{E}(X) + b\mathbb{E}(Y) \\
+\mathbb{E}(aX + b) = a\mathbb{E}(X) + b \\
+\mathbb{V}(aX) = a^2\mathbb{V}(X)\\
+\]
+
+\subsection*{Generating function of Infinite Discrete Random Variable :}
+
+\text{Let X and Y two Infinite Discrete Random Variable such that :} \\
+
+\text{ $X(\Omega) = \mathbb{N}$, then :}
+\text{The generating function of X is $G_X : t \mapsto \mathbb{E}(t^x)$, i.e the sum of the series :}
+\[ \sum{P(X = k) \times t^k} \\
+\implies G_X : t \mapsto \sum_{\, k \, = \, 0}^{+\infty}{P(X = k) \times t^k}
+\]
+
+\text{Here, P(X = k) could be named $a_n$ which is a sequence.}\\
+
+\text{We also talk about "the generating series of X"}
+\[ t = 1 \implies \sum_{\, k \, = \, 0}^{+\infty}{P(X = k) \times t^k} \text{converges and} G_X(1) = 1 \implies R \geq 1
+\]
+\subsection*{Properties of $G_X$}
+\begin{tikzpicture}
+  \fill[fill=yellow] (0,0) -- (1,0) -- (0.5,0.866) -- cycle;
+  \node at (0.5,0.4) {\textbf{!}};
+\end{tikzpicture}
+
+\text{(-1, 1) and -1, 1 excluded :}
+\begin{cases}
+  G_X is continuous over [-1, 1], with G_X(1) = 1\\
+  G_X \in C^{\infty}
+\end{cases}
+
+\text{If Y another I.D.R.V, $Y(\Omega) = \mathbb{N}$, $G_{X+Y} = G_X + G_Y$ over $[-1, 1]$ where -1 and 1 are excluded}
+\text{And :}
+\begin{cases}
+  \mathbb{E}(X) = G_X'(1) \\
+  \mathbb{V}(X) = G_X''(1) + G_X'(1) - G_X'(1)^2
+\end{cases}
+
+\[
+\sum{P(X = k \times (-1)^k)}
+\]
+
+\[
+\Leftrightarrow \sum{k \times (q)^{k-1}\times p}
+\]
+
+\[
+\Leftrightarrow p \sum_{k \beg 1}{k \times (q)^{k-1}\times p} is convergent on ]-1, 1[ and \mathbb{E}(X) = p \times (\frac{1}{1-q})
+\]
+\[
+\frac{p}{(1 - q)^2} = \frac{1}{1 - q} = \frac{1}{p}
+\]
 \end{document}
