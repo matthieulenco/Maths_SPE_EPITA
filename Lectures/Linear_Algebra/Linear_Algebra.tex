@@ -1,0 +1,248 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{ulem}        % underline
+\usepackage{tcolorbox}   % colored boxes (if needed)
+\usepackage{pifont}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{trees} % for tree structures
+
+\begin{document}
+\begin{center}
+\textbf{Mathématiques : CM}
+\end{center}
+
+
+\section{Bases of a Vector Space}
+
+\subsection*{Definition 1}
+Let $E$ be a vector space over a field $K$, let $n \in \mathbb{N}$, and let $\{x_1, x_2, \ldots, x_n\}$ be a family of vectors in $E$.  
+We say that the family $\{x_1, x_2, \ldots, x_n\}$ is a \textbf{basis} of $E$ if it is both \textbf{linearly independent} and \textbf{spanning} (generating) for $E$.
+
+\subsection*{Theorem 1 (Characterization of a Basis)}
+Let $E$ be a vector space over $K$, let $n \in \mathbb{N}$, and let $\{x_1, x_2, \ldots, x_n\}$ be a family of vectors in $E$.  
+Then $B = \{x_1, x_2, \ldots, x_n\}$ is a basis of $E$ if and only if:
+\[
+\forall x \in E, \ \exists! (\lambda_1, \lambda_2, \ldots, \lambda_n) \in K^n \text{ such that } 
+x = \sum_{i=1}^{n} \lambda_i x_i.
+\]
+The scalars $\lambda_i$, $i \in \{1, 2, \ldots, n\}$ are called the \textbf{coordinates} of the vector $x$ in the basis $B$.
+
+\section{Existence of a Basis}
+
+\subsection*{Theorem 2}
+Every non-zero vector space $E$ over a field $K$ admits at least one basis.
+
+\subsection*{Theorem 3 (Incomplete Basis Theorem)}
+Let $E$ be a vector space over $K$ that admits a finite generating family. Then:
+\begin{enumerate}
+    \item From every generating family of $E$, one can extract a basis of $E$.
+    \item Every linearly independent family of $E$ can be extended to a basis of $E$.
+\end{enumerate}
+
+\subsection*{Definition 2}
+In $\mathbb{R}^n$, the family $(e_1, \ldots, e_n)$ where for every $i \in \{1, \ldots, n\}$,
+\[
+e_i = (0, \ldots, 0, \underbrace{1}_{\text{$i$-th coordinate}}, 0, \ldots, 0)
+\]
+is a basis. It is called the \textbf{canonical basis} of $\mathbb{R}^n$.
+
+\subsection*{Definition 3}
+In $\mathbb{R}_n[X]$, the family $(1, X, \ldots, X^n)$ is a basis.  
+It is called the \textbf{canonical basis} of $\mathbb{R}_n[X]$.
+
+\section{Dimension of a Vector Space}
+
+\subsection*{Definition 1}
+Let $E$ be a vector space over a field $K$.  
+We say that $E$ is of \textbf{finite dimension} if $E$ admits a finite generating family.
+
+\subsection*{Theorem 1}
+Let $E \neq \{0_E\}$ be a finite-dimensional vector space over $K$. Then:
+\begin{enumerate}
+    \item $E$ admits at least one basis.
+    \item All bases of $E$ have the same cardinality.
+\end{enumerate}
+
+\subsection*{Definition 2}
+Let $E$ be a finite-dimensional vector space over $K$.
+\begin{enumerate}
+    \item If $E \neq \{0_E\}$, we call the \textbf{dimension} of $E$, denoted $\dim(E)$, the cardinality of any basis of $E$.
+    \item If $E = \{0_E\}$, we define $\dim(E) = 0$.
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Examples:}  
+$\dim(\mathbb{R}^n) = n$ and $\dim(\mathbb{R}_n[X]) = n + 1$.
+
+\subsection*{Proposition}
+Let E a $\mathbb{K}$ vector space such that dim(E) = n, n$\in \mathbb{N*}$ and B a family of p vectors, $p \in \mathbb{N*}$.
+\bigskip
+
+Then : 
+\begin{enumerate}
+    \item B is linearly independant $\implies p \leq n$
+    \item B is a spanning family of E $\implies p \geq n$
+    \item B is a basis of E $\implies (p \leq n) \land (p \geq n) \Leftrightarrow p = n$
+    \item (p = n) $\implies (B \text{ is linearly independant})$
+\end{enumerate}
+\bigskip
+\noindent \textbf{Examples:}  
+We have $\{1, X - 1, (X + 1)^2 \}$ = $\mathbb{R}_2[X]$ and $dim(\mathbb{R}_2[X]) = 3$
+
+\bigskip
+Then : \begin{enumerate}
+    \item $Card(\{1, X - 1, (X + 1)^2 \}) = 3 = dim(\mathbb{R}_2[X])$
+    \item B is linearly independant
+\end{enumerate}
+
+Proof that B is linearly independant : 
+\[
+\begin{pmatrix}
+1 & -1 & 1 \\
+0 & 1 & 2 \\
+0 & 0 & 1
+\end{pmatrix}
+:
+\begin{pmatrix}
+    0 \\
+    0 \\
+    0
+\end{pmatrix}
+\implies a = b = c = 0 \implies a \,+ \, b \, \times \, (X - 1) + c \,\times\,(X+1)^2 = 0_{\mathbb{R}_2[X]}
+\]
+
+\bigskip
+\noindent \textbf{Examples:} 
+
+$F = span(u_1 =, u_2, u_3), \forall i \in [\, | 1, 3 | \,], \forall \, u_i \text{ from } \mathbb{R^3}$
+\bigskip
+
+Find values of t such that $dim(F) = 3$, where :
+
+\[
+u_1 = (0, t^2, 1)
+\]
+\[
+u_2 = (0, 0, 3)
+\]
+\[
+u_3 = (1, 1, 3)
+\]
+
+$dim(F) = 3 \Leftrightarrow F = E $ because F is a linear subspace of E.
+\bigskip
+
+We are looking for a value of B such that $span(B) = \mathbb{R}^3 \implies$ we are looking for t such that B is a basis of $\mathbb{R}^3$
+since $Card(B) = 3 = dim(E) \implies$ we are looking for t such that B is linearly independant.
+
+\[\Leftrightarrow
+\begin{pmatrix}
+    0 & 0 & 1 \\
+    t^2 & 0 & 1 \\
+    1 & 3 & 3 
+\end{pmatrix}
+:
+\begin{pmatrix}
+    0 \\
+    0 \\
+    0
+\end{pmatrix}
+\Leftrightarrow
+\begin{pmatrix}
+    1 & 3 & 3 \\
+    t^2 & 0 & 1 \\
+    0 & 0 & 1 
+\end{pmatrix}
+:
+\begin{pmatrix}
+    0 \\
+    0 \\
+    0
+\end{pmatrix}
+\Leftrightarrow
+\begin{pmatrix}
+    1 & 3 & 3 \\
+    0 & -3t^2 & 1 -3t^2 \\
+    0 & 0 & 1 
+\end{pmatrix}
+:
+\begin{pmatrix}
+    0 \\
+    0 \\
+    0
+\end{pmatrix}
+\]
+
+Case t = 0 :
+
+$(a_1, a_2, a_3) \neq (0, 0, 0)$
+
+\bigskip
+Case t $\neq$ 1 :
+
+Kramer system : $a_1 = a_2 = a_3 = 0$
+
+\section{Linear Maps}
+
+\subsection*{Definition :}
+Let A,B two $\mathbb{K}$ vector space and 
+\[
+f : \begin{cases}
+    A \to B \\
+    \alpha \mapsto f(x)
+\end{cases}
+\]
+
+$\alpha$ map from A to B. Then :
+
+\[
+f \text{ is linear} \Leftrightarrow \begin{cases}
+    \forall (\alpha, u) \in \mathbb{K} \times A, f(\alpha u) = \alpha f(u) \\
+    \forall (u, v) \in A^2, f(u + v) = f(u) + f(v)
+\end{cases}
+\]
+\[
+\Leftrightarrow \forall (\alpha, u, v) \in \mathbb{K} \times A^2, f(\alpha u + v) = \alpha f(u) + f(v)
+\]
+
+Notation : f is a linear map from A to B $\Leftrightarrow f \in \mathcal{L}(A,B)$ \\
+
+\textbf{Remark (necessary condition) :} $f \in \mathcal{L}(A,B)\implies f(0_A) = O_B$ \\
+
+\textbf{Contrapositive :} $f(0_A) \neq O_B \implies f \notin \mathcal{L}(A,B)$
+
+\subsection*{Definition :}
+
+Let $f \in \mathcal{L}(A,B)$ with A and B two $\mathbb{K}$ vector space. Then :
+
+\begin{itemize}
+    \item We call $Ker(f) = \{ X \in A, f(X) = 0_B\} \subset A$
+    \item We call $Im(f) = \{Y \in B, f(X) = Y \} = \{f(X), X \in A\} \subset B$
+\end{itemize}
+
+\subsection*{Proposition :}
+
+\begin{enumerate}
+    \item $Ker(f)$ is a linear subspace of A
+    \item $Im(f)$ is a linear subspace of B
+\end{enumerate}
+
+\subsection*{Definition :}
+
+Let $f \in \mathcal{L}(A,B)$.
+\[
+\begin{cases}
+    f \text{ is injective} \Leftrightarrow Ker(f) = \{0_A\} \\
+    f \text{ is surjective} \Leftrightarrow Im(f) = B
+\end{cases}
+\]
+
+\subsection*{Proof :}
+
+\[f \text{ is surjective} \implies \forall Y \in B, \exists \, x \in A, f(X) = Y\]
+\[\implies B \subset Im(f) \land Im(f) \subset B \text{ by definition} \implies Im(f) = B\]
+
+\end{document}
+

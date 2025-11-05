@@ -198,11 +198,145 @@ G_Y = \prod_{\,i\,=\,1}^{n} {G_{X_i} :  t \mapsto(q + pt)^n = \sum_{k = 0}^{n} {
 \Rightarrow \mathbb{P}(Y = t) \Leftrightarrow G_{X+Y} = G_X \times G_Y
 \]\\
 
+\newpage
+
+\subsection*{Power Series :}
+
+\subsubsection*{Definition :}
+\bigskip
+\text{Let $\sum{u_n(x)}$ a series such that the general form $u_n(x)$ is of the following form :} 
+
+\[
+\forall n \in \mathbb{N}, u_n(x) = a_nx^n \text{ with} (a_n)_{n\,\in\,\mathbb{N}} \in \mathbb{R^N}\text{. } a_n \text{ should not depend on x.}
+\]
+\\
+\text{Ex :} 
+\[\sum{n^2x^n} \;, \; \sum{\frac{x^n}{n!} = e^x}\]
+
+\textbf{Remark :} \\
+
+\text{Power series are series of functions. In case of convergence at $x \in I \subset \mathbb{R}$,} \\
+
+\text{we can define a function by the sum of the series. $\forall x \in I, f(x)= S(x) = \sum{P_n(x)}$} 
+
+\bigskip
+\bigskip
+
+\text{$\forall (a_n) \in \mathbb{R^N}$, at x = 0, we have : $n = 0 \implies a_0 \times 0^0 = a_1n_1 \implies a_1 \times 0^1 = 0$}
+\[\implies \sum{a_nx^n} \text{ is convergent at x = 0 and } f(0) = \sum{a_nx^n} = a_0\]
+
+\bigskip
+
+\subsection*{Convergence Radius :}
+\bigskip
+\subsubsection*{Definition :}
+
+\text{Let $(a_n) \in \mathbb{R^N}$, and $\sum{a_nx^n}$ the power series associated with $a_n$ : $\sum{a_nx^n}$}
+\bigskip
+\[
+  \text{we call R the radius of convergence of the series.}
+  \text{Then } \exists \, R \in \mathbb{R_+} \cup \{+\infty\} \text{ such that:}
+\]
+\[
+\begin{cases}
+  \forall \, x \in \mathbb{R}, |x| < R \text{, the series converges absolutely.}\\
+  \forall \, x \in \mathbb{R}, |x| > R \text{, } \sum{a_nx^n} \text{ diverges.}
+\end{cases}
+\]
+
+\subsubsection*{Definition :} 
+\bigskip
+\text{We call open disc of convergence of $\sum{a_nx^n}$ an open interval $(-R, R)$ .} \\
+
+\newpage
+\textbf{Remark :}
+\bigskip
+
+This open disc of convergence is the included domain of function f :
+\[f : \begin{cases}
+  (-R, R) \rightarrow \mathbb{R}\\
+  x \mapsto \sum{a_nx^n} \text{, with }R \neq 0
+\end{cases}\]
+
+If R = 0, then $\sum{a_nx^n}$ is only convergent at x = 0 $\implies D_f = {0}$ and \\
+
+$f(0) = a_0$ and is divergent otherwise. \\
+
+If $R \in \mathbb{R_+^*}$, then : 
+
+\[\begin{cases}
+  (-R, R) \, \cap D_f = (-R, R) \\
+  (-\infty, -R) \, \cap D_f = \emptyset\\
+   (R, +\infty) \, \cap D_f = \emptyset
+\end{cases}\]
+\bigskip
+
+\textbf{How to define R :}
+\bigskip
+
+D'Alembert's criteria for power series : \\
+
+Let $\sum{a_nx^n}$ a power series, $\exists \, n_0\in \mathbb{N}, (n \ge n_0) \implies a_n \neq 0$. \\
+
+If $\exists \, P \in \mathbb{R_+} \, \cup \{+\infty\}$ such that $|\frac{a_{n + 1}}{a_n}| \to P$, then : 
+
+\[
+\begin{cases}
+  P = 0 \implies R = +\infty \\
+  P \in \mathbb{R_+^*} \implies R = \frac{1}{P} \\
+  P = +\infty \implies R = 0
+\end{cases}\]
+\bigskip
+
+\begin{itemize}
+  \item $\forall n \in \mathbb{N}, \sum{a_nx^n} : |\frac{a_{n+1}x^{n+1}}{a_nx^n}| = |\frac{a_{n+1}}{a_n}||x| \underset{n \, \to \, +\infty}{\to} P|x| $\\
+\end{itemize}
+
+Then : \\
+
+\begin{itemize}
+  \item If $P|x| < 1, \sum{a_nx^n} $ converges, where $|x| < \frac{1}{P}$. Thus $R \ge \frac{1}{P}$\\
+  \item If $P|x| > 1, \sum{a_nx^n} $ diverges, where $|x| > \frac{1}{P}$. Thus $R \le \frac{1}{P}$\\
+\end{itemize}
+
+\newpage
+
+Hence R = $\frac{1}{P}$ 
+\bigskip
+
+\begin{itemize}
+  \item If P = 0, then $\forall x \in \mathbb{R^*}, \frac{a_{n+1}}{a_n} |x| \underset{n \, \to \,+\infty}{\to} 0$, thus $\sum{a_nx^n}$ diverges hence R = $+\infty$ \\
+  \item If P = $+\infty$, then $\forall x \in \mathbb{R^*}, \frac{a_{n+1}}{a_n} |x| \underset{n \, \to \,+\infty}{\to} +\infty$, thus $\sum{a_nx^n}$ diverges hence R $\le 0$ \\
+  \item At x = 0, $\sum{a_nx^n converges \implies R \le 0 \implies R = 0}$
+\end{itemize}
+\bigskip
+
+Ex : $\sum{x^n}, \forall n \in \mathbb{N}, a_n = 1; \frac{a_{n+1}}{a_n} \underset{n \, \to \, +\infty}{\to} 1 \implies R = 1$ \\
+
+At x = 1 $\implies \sum{1} $ diverges, $D_f$ = $(-1, 1) \implies S $ \\
+
+\[\begin{cases}
+  (-1, 1) \to \mathbb{R} \\
+  x \mapsto S(x) = \sum{x^k} = \frac{1}{1-x}
+\end{cases}
+\]\\
+
+At x = -1 $\implies \sum{(-1)^n}$ diverges  \\
+
+\[ \sum{\frac{x^n}{n!}}, \forall n \in \mathbb{N}, a_n = \frac{1}{n!}, \frac{a_{n+1}}{a_n} \implies \frac{n!}{(n+1)!} = \frac{1}{n+1} \underset{n\,\to\,+\infty}{0} \implies R = +\infty
+\]\\
+
+\[D_f = (-\infty, +\infty), S : \begin{cases}
+  \mathbb{R} \to \mathbb{R} \\
+  x \mapsto \sum{\frac{x^n}{n!}} = e^x
+\end{cases}\]\\
+
+\[\sum{\frac{x^n}{n!}}, x = 1 \implies \sum{1} \text{ diverges and }x = -1 \implies \]
+\bigskip
 
 
 
 \bigskip
-
 \subsection*{Definition}
 
 Let $(\Omega, P(\Omega), \mathbb{P})$ be a probability space.  
@@ -329,17 +463,22 @@ Let $X$ be a discrete infinite random variable with $X(\Omega) = \mathbb{N}$. Th
 \end{tikzpicture}
 
 \text{(-1, 1) and -1, 1 excluded :}
+\[
 \begin{cases}
-  G_X is continuous over [-1, 1], with G_X(1) = 1\\
-  G_X \in C^{\infty}
+G_X \in C([-1,1]) \\
+G_X(1) = 1
 \end{cases}
+\]
 
 \text{If Y another I.D.R.V, $Y(\Omega) = \mathbb{N}$, $G_{X+Y} = G_X + G_Y$ over $[-1, 1]$ where -1 and 1 are excluded}
 \text{And :}
+
+\[
 \begin{cases}
-  \mathbb{E}(X) = G_X'(1) \\
-  \mathbb{V}(X) = G_X''(1) + G_X'(1) - G_X'(1)^2
+\mathbb{E}(X) = G_X'(1) \\
+\mathbb{V}(X) = G_X''(1) + G_X'(1) - (G_X'(1))^2
 \end{cases}
+\]
 
 \[
 \sum{P(X = k \times (-1)^k)}
@@ -350,7 +489,7 @@ Let $X$ be a discrete infinite random variable with $X(\Omega) = \mathbb{N}$. Th
 \]
 
 \[
-\Leftrightarrow p \sum_{k \beg 1}{k \times (q)^{k-1}\times p} is convergent on ]-1, 1[ and \mathbb{E}(X) = p \times (\frac{1}{1-q})
+\Leftrightarrow p \sum_{k \geq 1}{k \times (q)^{k-1}\times p} is convergent on ]-1, 1[ and \mathbb{E}(X) = p \times (\frac{1}{1-q})
 \]
 \[
 \frac{p}{(1 - q)^2} = \frac{1}{1 - q} = \frac{1}{p}
