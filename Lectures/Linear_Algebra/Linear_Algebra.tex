@@ -452,4 +452,206 @@ A = \begin{pmatrix}
 
 \[
 \mathbb{S} = \{4\} \]
+
+\section{Diagonalisation of endomorphism}
+
+Let $f \in \mathcal{L}(E)$ with $E$ a $\mathbb{K}$ vector space of finite dimension :
+
+\[Mat_{BB}(t) = A\]
+\[A \in \mathbb{M}_n(\mathbb{R})\]
+
+\subsection{Definition : Eigen Value}
+
+Let $A \in \mathbb{M}_n(\mathbb{K})$ and $\lambda \in \mathbb{K}$, we call eigen value of A any scalar $\lambda \in \mathbb{K}$ such that $\exists \, U \in \mathbb{K}^n, A \vec{U} = \lambda \vec{U}$ 
+Then we call $U$ the eigen value associated with $\lambda$. Notation : for a given matrix $A \in \mathbb{M}_n(\mathbb{K})$, $spectrum(A)$ is how we denote the set of eigen values of A.
+
+\subsection{Example}
+\[ \begin{pmatrix}
+    1 & 2 \\
+    3 & 4 \\
+\end{pmatrix}
+\begin{pmatrix}
+    x\\
+    y
+\end{pmatrix}, \lambda\in \mathbb{R} \text{ and } A = Mat_B(t), t \in \mathcal{L}(E),  E = \mathbb{K} \text{ vector space, } dim(E) = 2\]
+
+\[\text{We look for} \begin{pmatrix}
+    x \\
+    y
+\end{pmatrix}_B \mapsto \begin{pmatrix}
+    x + 2y \\
+    3x + 4y
+\end{pmatrix}\]
+
+\subsection{Definition : Eigen Space}
+
+Let $A \in \mathbb{M}_n\mathbb{K} \text{ and } \lambda \in spectrum(A).$ Then we call eigen space associated with $\lambda$ : $E_\lambda = \{\vec{U}\in \mathbb{K}^n, A\vec{U} = \lambda\vec{U}\} \subset \mathbb{K}^n$ 
+
+\subsubsection{Proof}
+
+Let $E_y$ a linear subspace of E :
+\begin{itemize}
+    \item $(A) \times \vec{0} = \vec{0} \implies \vec{0} \in E_\lambda \implies E_y \neq \emptyset$
+    \item $\forall (\alpha, \vec{U}, \vec{V}) \in \mathbb{K} \times E_\lambda^2, A(\alpha\vec{U} + \vec{V}) = A(\alpha\vec{U}) + A(\vec{V}) = \lambda\alpha\vec{U} + \lambda\vec{V} = \lambda(\alpha\vec{U} + \vec{V}) \implies \alpha\vec{U} + \vec{V} \in \mathbb{E}_\lambda$
+    \item Thus, $E_y$ is not empty and is closed by linear combination $\implies E_y$ is a linear subspace of $E$ 
+\end{itemize}
+% ----------------------
+% TO DO
+% -----------------------
+
+\subsection*{Defintion 2 : Eigen Space}
+
+Let E a $\mathbb{K}$ vector space of eigen vectors and $A \in \mathbb{M}_n(\mathbb{R})$ the matrix of an endomorphism of E; $\lambda$ an eigen value of A. The we call eigen space associated with $\lambda$ :
+
+\[ E_\lambda = Ker(A - \lambda I)\]
+
+\section{Diagonalisability}
+
+\subsection{Characteristic polynomial}
+
+\subsubsection{Definition}
+Let $A \in \mathbb{M}_n(\mathbb{K})$. We call characteristic polynomial and denote $P_A(X)$ the following polynomial :
+
+\[P_A(X) = det(A- XI)\]
+
+\subsubsection{Proposition}
+
+Let $A \in \mathbb{M}_n(\mathbb{K})$. We call $spectrum(A)$ the following set : 
+
+\[spectrum(A) = \{\lambda \in k, P_A(\lambda) = 0\}\]
+
+\subsubsection*{Example}
+
+Let $A \in \mathbb{M}_n(\mathbb{K})$, such that :
+\[A = \begin{pmatrix}
+    0 & 1 & 1 \\
+    -1 & 2 & 1 \\
+    0 & 0 & 1
+\end{pmatrix}\]
+
+\[
+P_A(X) = \begin{vmatrix}
+    -X & 1 & 1 \\
+    -1 & 2-X & 1 \\
+    0 & 0 & 1 - X
+\end{vmatrix}
+\]
+
+\[ = (-1)^{3+3} \times (1-X) \times \begin{vmatrix}
+    -X & 1 \\
+    -1 & 2 -X
+\end{vmatrix}
+\]
+
+\[
+= (1 - X)(-2X + X^2 + 1) = (1 - X) (X-1)^2 = (1-X)^3
+\]
+
+\subsubsection{Defintion}
+
+Let $f \in \mathcal{L}(E)$ and $A = Mat(f)$ in the standard basis. We say A is diagonalisable if there exists an eigen basis of f in E, i.e a basis $B_e = (u_1, ..., u_n)$ such that $\forall i \in [|1, n|], f(u_i) = \lambda_i U_i, \lambda_i \in \mathbb{K}$
+
+\subsubsection{Definition 2}
+
+Let $f \in \mathcal{L}(E)$ and $A = Mat(f)$ in the standard basis. A is diagonalisable if $\exists P \in M_n(\mathbb{R})$, \textbf{invertible} such that :
+
+\[P^{-1}AP = D \text{, when D is diagonal}\]
+
+\subsubsection{Theorem}
+
+Let $f \in \mathcal{L}(E)$ and $A = Mat_B(f)$.
+
+Then the following proposition are equivalent :
+\begin{itemize}
+    \item A is diagonalisable
+    \item There exists an eigen basis for $f$ in $E$
+    \item $\sum_{ \lambda \in spectrum(A)}{dim(E_\lambda)} = dim(E)$
+    \item $\sum_{ \lambda \in spectrum(A)}{E_\lambda}= E_{\lambda_1} + E_{\lambda_2} + ... + E_{\lambda_n}= E$
+\end{itemize}
+
+\subsubsection{Example}
+
+Let : 
+\[A = \begin{pmatrix}
+    3 & -1 & 1 \\
+    0 & 2 & 0 \\
+    1 & -1 & 3
+\end{pmatrix} \implies P_A(X) \begin{vmatrix}
+    3 - X & -1 & 1 \\
+    0 & 2 - X & 0 \\
+    1 & -1 & 3 - X
+\end{vmatrix}\]
+
+\[= (-1)^(2+2) \times (2-X) \times ((3-X)^2 - 1) = ((2 - X) (3 - X - 1)(3 - X + 1))\]
+\[= (2-X)^2(4-X) \implies spectrum(A) = \{2, 4\}\]\\
+
+Thus : $E_2 = \{x \in E, AX = 2X\} = Ker(A - 2I)$
+\[\implies \begin{pmatrix}
+    1 & -1 & 1 \\
+    0 & 0 & 0 \\
+    1 & -1 & 1
+\end{pmatrix}:\begin{pmatrix}
+    0 \\
+    0 \\
+    0
+\end{pmatrix} \Leftrightarrow x - y + z = 0 \implies \{ \begin{pmatrix}
+y-z \\
+0 \\
+z
+\end{pmatrix}_B , (y,z) \in \mathbb{R}^2 \}\]
+
+\[ = span(\begin{pmatrix}
+    1\\
+    1 \\ 
+    0
+\end{pmatrix}_B , \begin{pmatrix}
+    -1 \\
+    0 \\ 
+    1
+\end{pmatrix}_B) \implies dim(E_2) = 2\]
+\bigskip
+
+Also : $E_4 = (Ker(A - 4I)) = Ker\begin{pmatrix}
+-1 & -1 & 1\\
+0 & -2 & 0 \\
+1 & -1 & -1 \\
+\end{pmatrix}$
+\[\begin{pmatrix}
+1 & 1 & -1\\
+0 & -2 & 0 \\
+1 & -1 & -1 \\
+\end{pmatrix} : \begin{pmatrix}
+    0 \\
+    0 \\
+    0
+\end{pmatrix} \Leftrightarrow 
+\begin{pmatrix}
+1 & 1 & -1\\
+0 & -2 & 0 \\
+0 & -2 & 0 \\
+\end{pmatrix} : \begin{pmatrix}
+    0 \\
+    0 \\
+    0
+\end{pmatrix} \]
+
+\[\begin{pmatrix}
+1 & 1 & -1\\
+0 & -2 & 0 \\
+0 & 0 & 0 \\
+\end{pmatrix} : \begin{pmatrix}
+    0 \\
+    0 \\
+    0
+\end{pmatrix} \implies \begin{cases}
+    x = z \\
+    y = 0 \\
+    z \in \mathbb{R}
+\end{cases} \implies E_4 = span(\begin{pmatrix}
+    1 \\
+    0\\ 
+    1
+\end{pmatrix})\]
+
+\[\implies dim(E_1) = 1 \implies dim(E_1) + dim(E_2) = 1 + 2 = 3 = dim(E) \implies A \text{ is diagonalisable.}\]
 \end{document}
