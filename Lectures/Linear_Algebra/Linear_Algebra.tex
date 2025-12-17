@@ -88,7 +88,7 @@ Then :
     \item B is linearly independant $\implies p \leq n$
     \item B is a spanning family of E $\implies p \geq n$
     \item B is a basis of E $\implies (p \leq n) \land (p \geq n) \Leftrightarrow p = n$
-    \item (p = n) $\implies (B \text{ is linearly independant})$
+     $\implies (B \text{ is linearly independant})$
 \end{enumerate}
 \bigskip
 \noindent \textbf{Examples:}  
@@ -119,7 +119,7 @@ Proof that B is linearly independant :
 \bigskip
 \noindent \textbf{Examples:} \\
 
-$F = span(u_1 =, u_2, u_3), \forall i \in [\, | 1, 3 | \,], \forall \, u_i \text{ from } \mathbb{R^3}$
+$F = span(u_1, u_2, u_3), \forall i \in [\, | 1, 3 | \,], \forall \, u_i \text{ from } \mathbb{R^3}$
 \bigskip
 
 Find values of t such that $dim(F) = 3$, where :
@@ -212,9 +212,9 @@ f \text{ is linear} \Leftrightarrow \begin{cases}
 
 Notation : f is a linear map from A to B $\Leftrightarrow f \in \mathcal{L}(A,B)$ \\
 
-\textbf{Remark (necessary condition) :} $f \in \mathcal{L}(A,B)\implies f(0_A) = O_B$ \\
+\textbf{Remark (necessary condition) :} $f \in \mathcal{L}(A,B)\implies f(0_A) = 0_B$ \\
 
-\textbf{Contrapositive :} $f(0_A) \neq O_B \implies f \notin \mathcal{L}(A,B)$
+\textbf{Contrapositive :} $f(0_A) \neq 0_B \implies f \notin \mathcal{L}(A,B)$
 
 \subsection*{Definition :}
 
@@ -288,7 +288,7 @@ We call determinant of A and denote $det(A)$ the real number :
         a_{21} & a_{23} \\
         a_{31} & a_{33}
     \end{vmatrix}
-      - a_{13} \times 
+      + a_{13} \times 
       \begin{vmatrix}
         a_{21} & a_{22} \\
         a_{31} & a_{32}
@@ -320,7 +320,7 @@ det(A) = (-1)^{1+1} \times 1 \times \begin{vmatrix}
 \end{vmatrix} + (-1)^{1+2} \times 2 \times \begin{vmatrix}
     4 & 6 \\
     6 & 4
-\end{vmatrix} (-1)^{1+3} \times 0 \times \begin{vmatrix}
+\end{vmatrix} + (-1)^{1+3} \times 0 \times \begin{vmatrix}
     4 & 5 \\
     6 & 5
 \end{vmatrix}
@@ -340,7 +340,7 @@ det(A) = (-1)^{1+1} \times 1 \times \begin{vmatrix}
     \]
     
     \item \[det(A^T) = det(A)\]
-    \item When doing a row echelon for instance $\alpha R_1 + \beta R_2$: \[ det(A) = \alpha \times \beta \times det(C)\] where C is the matrix that has been row echelon
+    \item When doing a row echelon for instance $\alpha R_1 + \beta R_2$: \[ det(A) = \alpha \times \beta \times det(C)\] where C is the matrix that has been row echelonned
 \end{enumerate}
 
 \subsection{Determinant and invertibility}
@@ -375,11 +375,11 @@ Let $A \in \mathbb{M}_n\mathbb{(R)}$
     \]
     \item A is a upper-triangle matrix $\Leftrightarrow j < i \implies a_{ij} = 0$
     \[
-        det(A) = \prod_{i = 1}^{n}{a_{ij}}
+        det(A) = \prod_{i = 1}^{n}{a_{ii}}
     \]
     \item A is a lower-triangle matrix $\Leftrightarrow j > i \implies a_{ij} = 0$
     \[
-        det(A) = \prod_{i = 1}^{n}{a_{ij}}
+        det(A) = \prod_{i = 1}^{n}{a_{ii}}
     \]
 \end{itemize}
 
@@ -457,13 +457,13 @@ A = \begin{pmatrix}
 
 Let $f \in \mathcal{L}(E)$ with $E$ a $\mathbb{K}$ vector space of finite dimension :
 
-\[Mat_{BB}(t) = A\]
+\[Mat_{BB}(f) = A\]
 \[A \in \mathbb{M}_n(\mathbb{R})\]
 
 \subsection{Definition : Eigen Value}
 
 Let $A \in \mathbb{M}_n(\mathbb{K})$ and $\lambda \in \mathbb{K}$, we call eigen value of A any scalar $\lambda \in \mathbb{K}$ such that $\exists \, U \in \mathbb{K}^n, A \vec{U} = \lambda \vec{U}$ 
-Then we call $U$ the eigen value associated with $\lambda$. Notation : for a given matrix $A \in \mathbb{M}_n(\mathbb{K})$, $spectrum(A)$ is how we denote the set of eigen values of A.
+Then we call $U$ the eigen vector associated with the eigen values $\lambda$. Notation : for a given matrix $A \in \mathbb{M}_n(\mathbb{K})$, $spectrum(A)$ is how we denote the set of eigen values of A.
 
 \subsection{Example}
 \[ \begin{pmatrix}
@@ -495,9 +495,8 @@ Let $E_y$ a linear subspace of E :
     \item $\forall (\alpha, \vec{U}, \vec{V}) \in \mathbb{K} \times E_\lambda^2, A(\alpha\vec{U} + \vec{V}) = A(\alpha\vec{U}) + A(\vec{V}) = \lambda\alpha\vec{U} + \lambda\vec{V} = \lambda(\alpha\vec{U} + \vec{V}) \implies \alpha\vec{U} + \vec{V} \in \mathbb{E}_\lambda$
     \item Thus, $E_y$ is not empty and is closed by linear combination $\implies E_y$ is a linear subspace of $E$ 
 \end{itemize}
-% ----------------------
-% TO DO
-% -----------------------
+
+\subsubsection*{Example}
 
 \subsection*{Defintion 2 : Eigen Space}
 
@@ -654,4 +653,106 @@ Also : $E_4 = (Ker(A - 4I)) = Ker\begin{pmatrix}
 \end{pmatrix})\]
 
 \[\implies dim(E_1) = 1 \implies dim(E_1) + dim(E_2) = 1 + 2 = 3 = dim(E) \implies A \text{ is diagonalisable.}\]
+
+\subsubsection{Definition : algebraic and geometrix multiplicities of eigen values}
+
+Let $f$ an endomorphism of a finite-dimensional vector space E. (i.e $f\in \mathcal{L}(E)$)
+and $\lambda \in spectrum(f)$ an eigen value of $f$. The we call :
+\begin{enumerate}
+    \item a algebraic multiplicity of $\lambda$ as a root of characteristic polynomial
+    \item a geometric multiplicity of $\lambda$ the dimensions of the eigen space
+\end{enumerate}
+
+% TO DO
+
+\subsubsection{Related diagonalisability criteiria}
+
+Let $f \in \mathcal{L}(E)$, E a $\mathbb{K}$ vector space and $A = Mat_{BB}(f)$, B a basis of E.
+\begin{itemize}
+    \item  $f$ is diagonalisable if the some of geometrix multiplicities of all eigen values of f is equal to the dimension of E. $\sum_{\lambda \in spectrum(f)}{dim(E_\lambda) = \lambda = dim(E)}$.
+    \item $\forall \lambda \in spectrum(f)$, her geometric multiplicity and algebraic multiplicity are equal.
+\end{itemize}
+
+\subsubsection{Theorem}
+Let $f$ an endomorphism of a finite-dimensional vector space E. (i.e $f\in \mathcal{L}(E)$) \\
+
+$\forall \lambda \in spectrum(f)$, the geometrix multiplicity of $\lambda$ is always greater than or equal to one and less than or equal to its algebraic multiplicity \\
+
+i.e :
+$\forall \lambda \in spectrum(f), 1 \leq dim(E_\lambda) \leq m(\lambda_i)$ where $m(\lambda_i)$ is the algebraic multiplicity of $\lambda_i$ $\implies \sum_{\lambda \in spectrum(f)}{dim(E_{\lambda_i})} \leq \lambda$
+
+\subsubsection{Corollary}
+Let $f$ an endomorphism of a finite-dimensional vector space E. (i.e $f\in \mathcal{L}(E)$). If f admits a distinct eigen values then f is diagonalisable
+
+\subsection{Method for diagonalising and endomorphism}
+\begin{enumerate}
+    \item Characteristic polynomial and its roots ($P_\lambda and spectrum of f$)
+    \item If n roots ($card(spectrum(f))$) then f is diagonalisable. If $< n$, check the geometric multiplicity standing with the eigen values whose algebraic multiplicity is > 1. Or $\sum_{\lambda \in spectrum(f)}{dim(E_{\lambda_i})}$ and compare it to n. If equal, diagonalisable else it is not.
+    \item Determine a basis $B_\lambda$ for each $E_\lambda = Ker(f - \lambda I_{dE} = ker(A - \lambda I))$ Thus the concatenation of those bases is an eigen basis in which the matrix of f is diagonal.
+\end{enumerate}
+
+\textbf{BE CAREFUL :} $f$ is diagonal $\Leftrightarrow \forall \lambda \in spectrum(f), dim(E_{\lambda_i}) = m(\lambda_i) \Leftrightarrow P_\lambda \text{ splits}$ \\
+
+Remark : if $P_\lambda$ does not split, f is not diagonal.
+
+\subsubsection{Proposition}
+
+Let $A\in \mathbb{M}_n(\mathbb{R}.)$ If $A$ is symmetric i.e $^+A = A$, then A is diagonalisable.
+
+\subsubsection{Example}
+
+\[A = \begin{pmatrix}
+    5 & 0 & -6 \\
+    0 & -1 & 0 \\
+    3 & 0 & -4 
+\end{pmatrix} \implies \begin{vmatrix}
+    5 - X & 0 & -6 \\
+    0 & -1 - X & 0 \\
+    3 & 0 & -4 - X 
+\end{vmatrix}\]
+
+\[ = (-1)^{2 + 2} \times -(X + 1) \times [(5-X)(-4-X) + 18] = -(X + 1)(X^2 - X - 2) = (X + 1)^2 (X-2)\]
+\[\implies spectrum(A) = \{-1, 2\}\]
+
+\[
+E_{-1} = Ker(A + I) = Ker\begin{pmatrix}
+    6 & 0 & -6 \\
+    0 & 0 & 0 \\
+    3 & 0 & -3
+\end{pmatrix} \implies Im(A + I) = span((2, 0, 1))
+\]
+
+\[
+\implies dim(Im(A + I)) = 1 \implies dim(Ker(A + I)) = 2 
+\]
+
+\[
+(1, 0, 1), (0, 1, 0) \text{ are non-colinears vectors from} Ker(A + I)
+\]
+
+\[
+\implies A \text{ is diagonalisable.} \implies B_{E_{-1}} = ((1, 0, 1), (0, 1, 0))
+\]
+
+\[E_2 = ker(A - 2I) = ker\begin{pmatrix}
+    3 & 0 & -6 \\
+    0 & -3 & 0 \\
+    3 & 0 & -6
+\end{pmatrix} \implies dim(Im(A - 2I) = 2)\]
+
+\[
+ \implies dim(Ker(A - 2I) = 1) \; \land \; 2C_1 + 0C_2 + 1C_3 = 0 \implies (2,0,1) \in Ker(A - 2I) \; \land \; (2,0,1)
+\]
+
+\[
+\implies B_2 = ((2,0,1)) \implies B_e = ((1,0,1), (0,1,0), (2,0,1))
+\]
+
+\[
+\implies Mat_{B_e}(A) = \begin{pmatrix}
+    -1 & 0 & 0 \\
+    0 & -1 & 0 \\
+    0 & 0 & 2
+\end{pmatrix}
+\]
 \end{document}
