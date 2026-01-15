@@ -1,0 +1,331 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{ulem}        % underline
+\usepackage{tcolorbox}   % colored boxes (if needed)
+\usepackage{pifont}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{centernot}
+\usetikzlibrary{trees} % for tree structures
+
+\begin{document}
+\tableofcontents 
+\newpage
+\begin{center}
+\textbf{Mathématiques : CM}
+\end{center}
+
+
+
+\section{Euclidean space - scalar product}
+
+\textbf{Idea : Let E a vector space of finite dimension} \bigskip
+
+The scalar product is defined as :
+
+\[u \in E, v \in E, <u, v>\]
+
+\[< , > \; = \; \begin{cases} E \times E \; \rightarrow \; \mathbb{R} \\
+    (u, v) \; \mapsto \; <u, v> 
+    \end{cases} 
+\] \bigskip
+
+When u and v are orthogonal ($\perp$) we have the following relation :
+
+\[ u \perp v \equiv <u, v> = 0
+\]
+
+We also have the following relation : \\
+
+\[
+||u|| = \sqrt{<u, u>}
+\] \\
+
+\textbf{Standard scalar product of $\mathbb{R}^3$ :} \\
+
+\[
+u = (x_1, y_1, z_1) \\
+v = (x_2, y_2, z_2)
+\]
+
+\[<u,v> = x_1x_2 + y_1y_2 + z_1z_2\]
+\[\implies ||u|| = \sqrt{<u,u>} = \sqrt{x_1^2 + y_1^2 + z_1^2}\] \\
+
+\textbf{Definition : symmetric bilinear form} \\
+
+Let a mapping such that :
+
+\[
+\phi : \begin{cases}
+    E \times E \; \rightarrow \; \mathbb{R} \\
+    (u, v)\; \mapsto \phi(u,v)
+\end{cases}
+\]
+
+$\phi$ is a symmetric bilinear form if :
+
+\begin{enumerate}
+    \item It is bilinear : $\forall \; u_0 \in \, E, v \, \mapsto \, \phi (u_0, v)$ is a linear map
+    \item It is bilinear : $\forall \; v_0 \in \, E, u \, \mapsto \, \phi (u, v_0)$ is a linear map
+    \item It is symmetric : $\forall \; (u,v) \in \, E^2, \phi (u, v) = \phi(v,u)$ is a linear map
+\end{enumerate} \bigskip
+
+\textbf{Explanation :}
+
+\[
+\phi = \begin{cases}
+    E \times E \; \rightarrow \, \mathbb{R} \\
+    (u, v) \; \mapsto \phi (u,v)
+\end{cases}
+\]
+
+Let $u_0 \in E$ : \\
+
+The mapping : $\begin{cases}
+    E \, \rightarrow \, \mathbb{R} \\
+    v \, \mapsto \phi(u_0, v)
+\end{cases}$is linear \\
+
+\[
+\forall \, (v, v') \in E^2, \forall \alpha \in \mathbb{R}, \phi(u_0, \alpha v + v') = \alpha \phi(u_0,v) + \phi(u_0, v')
+\] \\
+
+If $v_0 \in E, \forall (u,u') \in E^2,\forall \alpha \in \mathbb{R}, \phi(\alpha u + u', v_0) = \alpha \phi(u,v_0) + \phi(u', v_0) $ \\
+
+\textbf{Example : standard scalar product of $\mathbb{R}^3$}
+
+\[
+u = (x_1, y_1, z_1) \\
+v = (x_2, y_2, z_2)
+\]
+
+\[
+\phi(u,v) = x_1x_2+ y_1y_2 + z_1z_2
+\]
+
+If u is given (considered as a constant), then the mapping  : \\
+
+$v \, \mapsto \, x_1x_2 + y_1y_2 + z_1z_2$ is a linear map. \\
+
+Note that the coordinates of u are constant numbers. \\ 
+
+Those of v are variables.\\
+
+for example if $u = (1,2,3)$, then $v = (x_2, 2y_2, 3z_2)$ \\
+
+\textbf{Similarly :}, if $v = (x_2, y_2, z_2)$ is given, then the mapping : \\
+
+$u \, \mapsto \, x_1x_2 + y_1y_2 + z_1z_2$ is a linear map . \\
+
+Note that the coordinates of v are being constant numbers. \\
+
+Those of u are variables. \\
+
+\textbf{Furthermore}, $\phi(u,v) = \phi(v,u)$ \\
+
+\textbf{A symmetric bilinear form $\phi$ is positive definite if :}
+
+\[
+\forall u \in E, \phi(u,u) \geq 0 \land \phi(u,u) = 0 \implies u = 0_E
+\]
+
+Example 1 : Standard scalar product of $\mathbb{R}^3$
+
+\[
+\phi(u,u) = x_1^2 + y_1^2 + z_1^2 \geq 0
+\]
+
+and \[
+\phi(u,u) = 0 \implies \begin{cases}
+    x_1^2 = 0 \\
+    y_1^2 = 0 \\
+    z_1^2 = 0 
+\end{cases} \implies u = 0_E
+\]
+
+The standard scalar product is thus positive definite \\
+
+Example 2 :
+
+\[
+\phi (u,v) = x_1x_2 + y_1y_2 - z_1z_2 \text{ is a symmetric bilinear form}
+\] \bigskip
+
+If $u = (x_1, y_1, z_1)$ is given (considered as a constant), then the mapping : \\
+
+$v \, \mapsto \, x_1x_2 + y_1y_2 + z_1z_2$ is a linear map.\\
+
+Note that the coordinates of u are constant numbers. \\
+
+Those of v are the variables. \\
+
+Thus the coordinates of u are the coefficient of the linear function. \\
+
+Similarly, if v is given and constant, $u \mapsto \phi(u,v)$ is linear \\
+
+\[\implies \phi(u,v) = \phi(v,u)\] \\
+
+Positive definite ? No \\
+
+\[
+\phi(u,u) x_1^2 + y_1^2 - z_1^2
+\] \bigskip
+
+If $u = (1,0,0), \phi(u,u) = 1 > 0$ \\
+
+If $u = (0,0,1), \phi(u,u) = -1 < 0$ \\
+
+Example 3 :
+
+\[
+\phi (u,v) = x_1x_2 + y_1y_2
+\phi(u,u) = x_1^2 + y_1^2 \geq 0
+\]\bigskip
+
+But $\phi(u,u) = 0 \centernot\implies u = 0_E$ as for $u=(0,0,1), \phi(u,u) = 0, u \neq 0_E$ \\
+
+A scalar product is a symmetric bilinear form, which is positive definite. \\
+
+Then we note $<u,v>$ instead of $\phi(u,v)$ \\
+
+We can define for $u\in E$, 
+
+\[
+||u|| = \sqrt{<u,v>} \implies \sqrt{<u,v>} \in \mathbb{R} \text{ because } <u,v> \; \geq 0
+\]
+
+\[
+||u|| = 0 \implies u = 0_E
+\] \bigskip
+
+Theorem : Matrix representation of a symmetric bilinear form :\\
+
+Let $\mathcal{B} = (e_1, ..., e_n)$ be a basis of E. \\
+
+u has coordinates : $\begin{pmatrix}
+    x_1 \\
+    y_1 \\
+    z_1 \\
+    ... \\
+\end{pmatrix}$ in $\mathcal{B}$ \bigskip
+
+
+v has coordinates : $\begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    z_2 \\
+    ... \\
+\end{pmatrix}$ in $\mathcal{B}$ \bigskip
+
+Then : $\exists \, A \in \mathbb{M}_n(\mathbb{R}), \phi(u,v) = \,^+{X}_1AX_2$ is symmetric \\
+
+Examples : \\
+
+Standard scalar product of $\mathbb{R}^3$ : \\
+
+Example 1 : \\
+
+$\mathcal{B}$ standard basis of $\mathbb{R}^3$ \\
+
+$u = (x_1, y_1, z_1)$ has coordinates $X_1 = \begin{pmatrix}
+    x_1 \\
+    y_1 \\
+    z_1 \\
+\end{pmatrix}$ \bigskip
+
+$v = (x_2, y_2, z_2)$ has coordinates $X_2 = \begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    z_2 \\
+\end{pmatrix}$ \bigskip
+
+\[
+^T{X_1}X_2 = (x_1, y_1, y_2) \begin{pmatrix}
+    x_2\\
+    y_2\\
+    z_2\\
+\end{pmatrix}
+\]\bigskip
+
+\[
+= x_1x_2 + y_1y_2 +z_1z_2 \implies A = I_3 = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+\end{pmatrix}
+\]
+
+\[
+^T{X_1}AX_2 = x_1x_2 + y_1y_2 + z_1z_2 = <u,v>
+\] \bigskip
+
+Example 2 :
+
+\[
+\phi(u,v) = x_1x_2 + y_1y_2 - z_1z_2
+\]
+
+\[\text{Then : } A = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & -1
+\end{pmatrix}\] \bigskip
+
+\[^T{X_1}AX_2 = (x_1, y_1, z_1) \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & -1
+\end{pmatrix} \begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    z_2
+\end{pmatrix}\]\bigskip
+
+\[
+= (x_1, y_1, z_1) \begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    -z_2
+\end{pmatrix}
+\] 
+
+\[
+= x_1x_2 + y_1y_2 - z_1z_2
+\]
+
+Example 3 : 
+
+\[
+\phi(u,v) = x_1x_2 + y_1y_2
+\]
+
+\[ \text{Then : } A = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 0
+\end{pmatrix}\] \bigskip
+
+\[^T{X_1}AX_2 = (x_1, y_1, z_1) \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 0
+\end{pmatrix} \begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    z_2
+\end{pmatrix}\] \bigskip
+
+\[
+= (x_1, y_1, z_1) \begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    0
+\end{pmatrix}
+\]
+
+\[
+= x_1x_2 + y_1y_2
+\]
+
+\end{document}
