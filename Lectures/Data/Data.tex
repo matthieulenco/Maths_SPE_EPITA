@@ -10,11 +10,18 @@
 \usetikzlibrary{trees} % for tree structures
 
 \begin{document}
-\tableofcontents 
-\newpage
+
 \begin{center}
-\textbf{Mathématiques : CM}
+\begin{center}
+    \huge{\textbf{Mathématiques : CM}}
 \end{center}
+\end{center}
+\newpage
+
+\tableofcontents 
+
+
+\newpage
 
 
 
@@ -327,5 +334,41 @@ Example 3 :
 \[
 = x_1x_2 + y_1y_2
 \]
+\bigskip
+
+\section{Spectral Theorem} 
+\bigskip
+
+\textbf{Spectral Theorem :} all symmetric matrix A is diagonalizable. \\
+
+We can choose an orthonormal eigenbasis ($\epsilon_1, ..., \epsilon_n$). \\
+
+Then the transition matrix P satisfies to :
+
+\[
+^TPP = P \times {^T}P = I \Leftrightarrow P^{-1} = {^T}P
+\] \\
+
+Note : if the eigenbasis is orthonormal, then : 
+
+\[
+<\epsilon_i, \epsilon_j> = \begin{cases}
+    1 \text{ if }i = j \\
+    0 \text{ otherwise}
+\end{cases}
+\] \\
+
+\section{Theorem} 
+\bigskip
+
+\textbf{Theorem :} Let E = $\mathbb{R}^n$, let A be a symmetric matrix in $\mathcal{M}_n(\mathbb{R})$. \\
+
+Let us define $\phi(u,v) = {^T}X_1 A X_2$. \\
+
+$\phi$ is a scalar product $\Leftrightarrow$ All eigenvalues of A are > 0.\\
+
+Explanation in a an orthogonal eigenbasis $\mathcal{B'}$, $\phi(u,v) = {^TX'_1}DX'_2$ \\
+
+Where D is a diagonal matrix.
 
 \end{document}
