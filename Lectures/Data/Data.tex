@@ -336,7 +336,7 @@ Example 3 :
 \]
 \bigskip
 
-\section{Spectral Theorem} 
+\subsection{Spectral Theorem} 
 \bigskip
 
 \textbf{Spectral Theorem :} all symmetric matrix A is diagonalizable. \\
@@ -358,7 +358,7 @@ Note : if the eigenbasis is orthonormal, then :
 \end{cases}
 \] \\
 
-\section{Theorem} 
+\subsection{Theorem} 
 \bigskip
 
 \textbf{Theorem :} Let E = $\mathbb{R}^n$, let A be a symmetric matrix in $\mathcal{M}_n(\mathbb{R})$. \\
@@ -370,5 +370,175 @@ $\phi$ is a scalar product $\Leftrightarrow$ All eigenvalues of A are > 0.\\
 Explanation in a an orthogonal eigenbasis $\mathcal{B'}$, $\phi(u,v) = {^TX'_1}DX'_2$ \\
 
 Where D is a diagonal matrix.
+
+\newpage 
+
+\section{Orthogonal Projection}
+
+Let $V_0$ be the orthogonal projection of $V$ onto $F$. \bigskip
+
+$V_0$ is the element of $F$ the closest to $V$. \\
+
+\subsection{Motivation}
+
+Assume you must find $\lambda \in \mathbb{R}$ such that :
+
+\[
+v = \lambda u
+\]
+
+The "best solution" is $\lambda$ such that $v_0 = \lambda u$ \\
+
+Ex: $u = (1,1), v = (2,1)$ \\
+
+Solving $v = \lambda u : \begin{cases}
+    \lambda = 2 \\
+    \lambda = 1
+\end{cases}$ \\
+
+\[
+v_0 = \alpha u = (\alpha, \alpha)
+\]
+\[(v - v_0) \perp u\]
+\[(2 - \alpha, 1 - \alpha) \perp (1,1)\]
+\[\implies (2 - \alpha) \times 1 + (1 - \alpha) \times 1 = 0\]
+\[\implies 3 - 2\alpha = 0 \implies \alpha = \frac{3}{2}\]
+\[\implies v_0 = \frac{3}{2}(1,1) = (\frac{3}{2}, \frac{3}{2})\]\\
+
+The solution does not have a solution.\\
+
+However, we can determine $v_0$.\\
+
+$v_0$ represent the solution with the samellest range of error.
+
+\subsection{Definition}
+
+Let $(E, <, >)$ be an euclidean space. \\
+
+Let $F$ be a linear subspace of E.
+
+\[
+F^\perp = \{ u \in E, \forall \, v \in F, <u,v> = 0 \}
+\]
+
+\subsection{Theorem}
+
+If $F$ admits a basis $\mathcal{B} = (e_1, e_2, ..., e_n)$, then $F^\perp = \mathcal{B}^\perp$
+
+\[
+F^\perp = \{ u \in E, \begin{cases}
+    <u, e_1> = 0 \\
+    <u, e_2> = 0 \\
+    ... \\
+    <u, e_n> = 0
+\end{cases}\}
+\]
+
+\subsection{Theorem}
+
+If $F$ is finite-dimensional, then $F \oplus F^\perp = E$
+
+\[
+\Leftrightarrow \forall \, u \in E, \exists! (v,w) \in F \times F^\perp, u = v + w
+\] \\
+
+Then $v$ is the orthogonal projection of $u$ onto $F$.
+
+\subsection{Property}
+
+Let $u \in E$ and let $v_0 = P_F(u)$. \\
+
+$P_F$ is the orthogonal projection onto $F$. \\
+
+$v_0$ is the element of $F$ which minimizes $||u - v||^2$.\\
+
+It is the solution of the optimization : \\
+
+\[
+Min(||u - v||), \text{ constraint : } v \in F
+\]
+
+\subsection{Proof}
+
+Let $u = v_0 + w$ where $(v_0,w) \in F \times F^\perp$. \\
+
+Then $\forall \, v \in F$ :
+
+\[
+||u - v||^2 = <u-v, u-v> \implies u - v = (u-v_0) + (v_0 - v)
+\] \\
+
+Indeed, $(u-v_0) = w \in F^\perp$ and $(v_0 - v) \in F$ as $(v_0, v) \in F^2$
+
+\[
+\implies ||u - v||^2 - <u-v, u-v> = <(u-v_0) + (v_0 - v), (u-v_0) + (v_0 - v)> 
+\]
+
+\[
+= \,<(u - v_0), (u - v_0)> + \; 2 <(u - v_0), (v_0 - v)>  + <(v_0 - v), (v_0 - v)> 
+\]
+
+\[
+= ||u - v_0||^2 + ||v_0 - v||^2 \geq ||u - v_0||^2
+\]
+
+\[
+P_F(u) \in F \Leftrightarrow \exists (\lambda_1, ..., \lambda_n) \in \mathbb{R}^n, u = \lambda_1e_1 + ... + \lambda_ne_n
+\]
+
+\[
+u - P_F(u) \in F^\perp \Leftrightarrow \begin{cases}
+    <(u - \lambda_1e_1 + ... + \lambda_ne_n), e_1> = 0 \\
+    ... \\
+    <(u - \lambda_1e_1 + ... + \lambda_ne_n), e_n> = 0
+\end{cases}
+\] \\
+
+\[
+\Leftrightarrow \begin{cases}
+    <(\lambda_1<e_1,e_1> + ... + \lambda_n<e_n,e_n>), e_1> = <u,e_1> \\
+    ... \\
+    <(\lambda_1<e_1,e_1> + ... + \lambda_n<e_n,e_n>), e_n> = <u, e_n>
+\end{cases}
+\] \\
+
+\subsection{Finding $P_F(u)$}
+
+Give $F$ admits a basis $\mathcal{B_F} = (\epsilon_1, ..., \epsilon_n)$ \\
+
+We write $P_F(u) \in F \implies u - P_F(u) \in F^\perp$
+
+\[
+\implies u = P_F(u) + (u - P_F(u))
+\]
+
+\[
+P_F(u) \in F \Leftrightarrow \exists (\alpha_1, ..., \alpha_n) \in \mathbb{R}^n, P_F(u) = \alpha_1\epsilon_1 + ... +  \alpha_n\epsilon_n
+\]
+
+\[
+u - P_F(u) \in F^\perp \Leftrightarrow \begin{cases}
+    <u - P_F(u), \epsilon_1> = 0 \\
+    ... \\
+    <u - P_F(u), \epsilon_n> = 0
+\end{cases}
+\] \\
+
+\[
+\Leftrightarrow \begin{cases}
+    <u - \alpha_1\epsilon_1 + ... + \alpha_n\epsilon_n, \epsilon_1> = 0 \\
+    ... \\
+    <u - \alpha_1\epsilon_1 + ... + \alpha_n\epsilon_n, \epsilon_n> = 0
+\end{cases}
+\] \\
+
+\[
+\Leftrightarrow \begin{cases}
+    <\alpha_1 <\epsilon_1, \epsilon_1> + ... + \alpha_n <\epsilon_n, \epsilon_n>, \epsilon_1> = <u, \epsilon_1> \\
+    ... \\
+    <\alpha_1 <\epsilon_1, \epsilon_1> + ... + \alpha_n <\epsilon_n, \epsilon_n>, \epsilon_n> = <u, \epsilon_n>
+\end{cases}
+\] \\
+
 
 \end{document}
