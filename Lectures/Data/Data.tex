@@ -7,7 +7,16 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{centernot}
+\usepackage{booktabs}
 \usetikzlibrary{trees} % for tree structures
+
+\newcommand{\Eemp}{\hat{\mathbb{E}}}
+\newcommand{\Varhat}{\widehat{\operatorname{Var}}}
+\newcommand{\shat}{\hat{\sigma}}
+\newcommand{\Covhat}{\widehat{\operatorname{Cov}}}
+\newcommand{\chat}{\hat{c}}
+
+
 
 \begin{document}
 
@@ -539,6 +548,323 @@ u - P_F(u) \in F^\perp \Leftrightarrow \begin{cases}
     <\alpha_1 <\epsilon_1, \epsilon_1> + ... + \alpha_n <\epsilon_n, \epsilon_n>, \epsilon_n> = <u, \epsilon_n>
 \end{cases}
 \] \\
+\newpage
 
+\section{Data Analysis} \bigskip
 
+Example of a dataset : \newline
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l c c c c c c c}
+\toprule
+Student & Class & Average & Sport & French & Math & Physics & English \\
+\midrule
+Student1 & A1 & 1 & SP1 & FR1 & MATH1 & PHY1 & ENG1 \\
+Student2 & B2 & 1 & SP2 & FR2 & MATH2 & PHY2 & ENG2 \\
+Student3 & C1 & 1 & SP3 & FR3 & MATH3 & PHY3 & ENG3 \\
+Student4 & B2 & 1 & SP4 & FR4 & MATH4 & PHY4 & ENG4 \\
+\bottomrule
+\end{tabular}
+\caption{Table of marks average in a high school.}
+\label{tab:Dataset}
+\end{table}
+\bigskip
+The question that we adress:
+\begin{itemize}
+    \item Consider the student good in maths. Are they good in physics ?
+\end{itemize}
+
+We try to find a relation :
+
+\[
+    PHY = \alpha MAT + \beta + Err_1
+\] 
+
+And compare the error with :
+
+\[
+    PHY = \beta + Err_2
+\] 
+
+The "best" $\beta$ is the Average of PHY column. \newline
+
+Is $||Err_1|| <$ $||Err_2||$ ? \newline
+
+If yes, is $\alpha > 0$ ? \newline
+
+For the model : 
+\[
+    PHY = \alpha MAT + \beta + Err_1
+\] 
+
+we look for the best solution of : 
+
+\[
+(S) : \begin{cases}
+    PHY_1 = \alpha MAT_1 + \beta \\
+    PHY_2 = \alpha MAT_2 + \beta \\
+    ... \\
+\end{cases}
+\]
+
+\[
+    \Leftrightarrow PHY = \alpha MAT + \beta \begin{pmatrix}
+        1 \\
+        1 \\
+        ... \\
+        1 \\
+    \end{pmatrix}
+\]
+
+Where $PHY$ and $MAT$ are the whole column. \newline
+
+Optimal values : $\alpha_0$ and $\beta_0$ such that $\alpha_0 MAT + \beta_0 \begin{pmatrix}
+        1 \\
+        1 \\
+        ... \\
+        1 \\
+    \end{pmatrix}$ is the orthogonal \newline 
+    
+    projection of $PHY$ on $Span(Mat, \begin{pmatrix}
+        1 \\
+        1 \\
+        ... \\
+        1 \\
+    \end{pmatrix})$ \newline
+
+\begin{itemize}
+    \item The students good at maths and sport, do they tend to be even better than those good only at maths ?
+\end{itemize}
+
+\[
+    PHY = \alpha MAT + \beta\begin{pmatrix}
+        1 \\
+        1 \\
+        ... \\
+        1 \\
+    \end{pmatrix} + \gamma SP + Err_3
+\]
+
+Find $\alpha_0, \beta_0, \gamma_0$ optimal : \newline
+
+Is $||Err_3|| < ||Err_1||$ ? \newline
+
+If yes, sign of $\beta$ ? \newline
+
+Let X be a column of the table.
+
+\[
+    X = \begin{pmatrix}
+        x_1 \\
+        x_2 \\
+        ... \\
+        x_n 
+    \end{pmatrix}
+\]
+
+X is an identically distributed random variable and independant. \newline
+
+Empirical expectation of X : \newline
+
+\[
+\Eemp (X) = \frac{x_1 + x_2 + ... + x_n}{n} = \frac{^T\begin{pmatrix}
+    1 \\
+    ... \\
+    1 \\
+\end{pmatrix}.X}{n}
+\] \newline
+
+Empirical variance of X : \newline
+
+\[
+\Varhat (X) = \Eemp((X - \Eemp (X))^2)
+\]
+
+\[
+= \frac{(x_1 - \Eemp(X))^2 + (x_2 - \Eemp(X))^2 + ... + (x_n - \Eemp(X))^2}{n}
+\] \newline
+
+Let $X_c$ = $X - \Eemp (X) \begin{pmatrix}
+    1 \\
+    ... \\
+    1 \\
+\end{pmatrix}$\newline
+
+\[
+X_c = \begin{pmatrix}
+    x_1 - \Eemp (X)\\
+    x_2 - \Eemp (X)\\
+    \dots
+    x_n - \Eemp (X)\\
+\end{pmatrix}
+\] 
+
+$X_c$ is the centered version of X. \newline
+
+\[
+\text{Thus } \Varhat = \frac{(x_1 - \Eemp(X))^2 + (x_2 - \Eemp(X))^2 + ... + (x_n - \Eemp(X))^2}{n}
+\]
+
+\[
+= \frac{1}{n} \begin{pmatrix}
+    x_1 - \Eemp(X) & x_2 - \Eemp(X) & ... & x_n - \Eemp(X)
+\end{pmatrix} \begin{pmatrix}
+    x_1 - \Eemp(X) \\
+    x_2 - \Eemp(X) \\
+    ... \\
+    x_n - \Eemp(X)
+\end{pmatrix}
+\]
+
+\[
+= \frac{^TX_cX_c}{n} = \frac{||X_c||^2}{n}
+\] \newline
+
+Empirical standard deviation of X :
+
+\[
+\shat(X) = \sqrt{\Varhat(X)} = \sqrt{\frac{^TX_cX_c}{n}} = \frac{||X_c||}{\sqrt{n}}
+\] \newline
+
+Consider two columns $X = \begin{pmatrix}
+    x_1 \\
+    ... \\
+    x_n \\
+\end{pmatrix}$ and $Y = \begin{pmatrix}
+    y_1 \\
+    ... \\
+    y_n \\
+\end{pmatrix}$ \newline
+
+Empirical covariance of X and Y :
+
+\[
+\Covhat(X,Y) = \Eemp((X - \Eemp(X))\times(Y - \Eemp(Y)))
+\]
+\[
+= \frac{1}{n}(x_1 - \Eemp(X))(y_1 - \Eemp(Y)) + ... + (x_n - \Eemp(X))(y_n - \Eemp(Y))
+\]
+\[
+= \frac{1}{n} \begin{pmatrix}
+    x_1 - \Eemp(X) & x_2 - \Eemp(X) & ... & x_n - \Eemp(X)
+\end{pmatrix} \begin{pmatrix}
+    y_1 - \Eemp(Y) \\
+    y_2 - \Eemp(Y) \\
+    ... \\
+    y_n - \Eemp(Y)
+\end{pmatrix}
+\]
+\[
+= \frac{^TX_cY_c}{n}
+\]
+\[
+\frac{1}{n}<X_c, Y_c>
+\] \newline
+
+Empirical correlation coefficient of X and Y : 
+
+\[
+\chat (X, Y) = \frac{\Covhat(X,Y)}{\shat(X)\shat(Y)}
+\] \newline
+
+Note that $\Covhat(X, X) = \Varhat(X)$ and $\Covhat(Y, Y) = \Varhat(Y)$ \newline
+
+Let $D =$ Dataset = $\begin{pmatrix}
+    X & Y
+\end{pmatrix} = \begin{pmatrix}
+    x_1 & y_1 \\
+    \dots & \dots \\
+    x_n & y_n
+\end{pmatrix}$ \newline
+
+$D_c =$ centered data set $= \begin{pmatrix}
+    X_c & Y_c
+\end{pmatrix}$ \newline
+
+The Empirical covariance matrix of D is : 
+
+\[
+\Covhat(D) = \begin{pmatrix}
+    \Varhat(X) & \Covhat(X, Y) \\
+    \Covhat(X, Y) & \Varhat(Y)
+\end{pmatrix} = \frac{^TD_cD_c}{n}
+\]
+
+\[
+^TD_cD_c = \begin{pmatrix}
+    x_1 - \Eemp(X) & ... & x_n - \Eemp(X) \\
+    y_1 - \Eemp(Y) & ... & y_n - \Eemp(Y)
+\end{pmatrix} \begin{pmatrix}
+     x_1 - \Eemp(X) & y_1 - \Eemp(Y) \\
+     ... & ... \\
+     x_n - \Eemp(X) & y_n - \Eemp(Y)
+\end{pmatrix}
+\]
+
+\[
+= \begin{pmatrix}
+    ^TX_cX_c & ^TX_cY_c \\
+    ^TY_cX_c & ^TY_cY_c \\
+\end{pmatrix}
+\]
+
+Ex : find $\Varhat(aX + bY)$ where $aX + bY = D \begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}$ \newline
+
+\[
+D \begin{pmatrix}
+    a \\
+    b
+\end{pmatrix} = \begin{pmatrix}
+    x_1 & y_1 \\
+    x_2 & y_2 \\
+    \dots & \dots \\
+    x_n & y_n \\
+\end{pmatrix} \begin{pmatrix}
+    a \\
+    b
+\end{pmatrix} = \begin{pmatrix}
+    ax_1 + by_1 \\
+    ax_2 + ny_2 \\
+    \dots \\
+    ax_n + by_n \\
+\end{pmatrix} = aX + bY
+\]
+
+\[
+\Varhat(X) = {^T}{X_c}X_c
+\]
+
+\[
+\Varhat(D\begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}) = (D_c\begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}) (D_c\begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}) \times \frac{1}{n}
+\]
+
+\[
+= \begin{pmatrix}
+    a & b
+\end{pmatrix} {^T}D_cD_c \begin{pmatrix}
+    a \\
+    b
+\end{pmatrix} \times \frac{1}{n}
+\]
+\[
+= \begin{pmatrix}
+    a & b
+\end{pmatrix} \Covhat(D) \begin{pmatrix}
+    a \\
+    b
+\end{pmatrix} 
+\]
 \end{document}
