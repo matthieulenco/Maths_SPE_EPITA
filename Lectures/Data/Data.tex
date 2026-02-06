@@ -15,7 +15,7 @@
 \newcommand{\shat}{\hat{\sigma}}
 \newcommand{\Covhat}{\widehat{\operatorname{Cov}}}
 \newcommand{\chat}{\hat{c}}
-
+\newcommand{\corrcoef}{\hat{r}}
 
 
 \begin{document}
@@ -867,4 +867,82 @@ D \begin{pmatrix}
     b
 \end{pmatrix} 
 \]
+
+\subsection{Correlation coefficient}
+
+\textbf{Definition :}
+\[\corrcoef(X, Y) = \frac{\Covhat(X,Y)}{\shat(X)\shat(Y)} \]
+
+\[
+\Covhat(X,Y) = \frac{1}{n} {^T}X_c Y_c = \frac{1}{n} <X_c, Y_c>
+\]
+
+\[
+\shat(X) = \sqrt{\frac{1}{n}{^T}X_cX_c}
+\]
+\[
+= \frac{1}{\sqrt{n}} \sqrt{{^T}X_cX_c} = \frac{1}{\sqrt{n}} ||X_c||
+\]
+
+\[
+\shat(Y) = \frac{1}{\sqrt{n}} ||Y_c||
+\]
+
+\[
+\implies \corrcoef(X,Y)= \frac{<X_c, Y_c>}{||X_c||.||Y_c||}
+\]
+
+In all euclidean space, 
+
+\[
+-||u||.||v|| \leq <u, v> \leq ||u||.||v||
+\]
+
+Explanation : 
+
+\[
+\begin{cases}
+    u = u_1 + u_2 \\
+    u_1 = \lambda V \\
+    <u_2, v> = 0 \\
+    \lambda \in \mathbb{R}
+\end{cases}
+\]
+
+\[
+<u, v> \; =  \; <u_1 + u_2, v> \; =  \; <u_1, v> + <u_2, v> 
+\]
+\[
+= \lambda <v, v> \; = \lambda ||v||^2
+\]
+
+\[
+\lambda ||v||^2 = \lambda ||v|| + ||v||
+\]
+
+\[
+\implies - ||u||^2 \leq \lambda ||v|| \leq ||u||
+\]
+
+\[
+(\lambda ||v||)^2 = \lambda^2 <v, v>
+\]
+\[
+<\lambda v, \lambda v> \; = \; <u_1, u_1>
+\]
+
+\[
+= ||u_1||^2 \leq ||u||^2
+\] \bigskip
+
+Because $||u||^2 = ||u_1||^2 + ||u_2||^2$ \newline
+
+Consequence : $-1 \leq \corrcoef(X,Y) \leq 1$
+
+\[\Covhat(aX + bY, a'X + b'Y) = \begin{pmatrix}
+    a & b
+\end{pmatrix} \Covhat(D) \begin{pmatrix}
+    a' \\
+    b'
+\end{pmatrix}\]
 \end{document}
