@@ -1,0 +1,413 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{ulem}        % underline
+\usepackage{tcolorbox}   % colored boxes (if needed)
+\usepackage{pifont}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{centernot}
+\usepackage{booktabs}
+\usepackage{esint} % Extended integrals
+\renewcommand{\notin}{\mathrel{\not\in}}
+\usetikzlibrary{trees} % for tree structures
+
+\newcommand{\Eemp}{\hat{\mathbb{E}}}
+\newcommand{\Varhat}{\widehat{\operatorname{Var}}}
+\newcommand{\shat}{\hat{\sigma}}
+\newcommand{\Covhat}{\widehat{\operatorname{Cov}}}
+\newcommand{\chat}{\hat{c}}
+\newcommand{\corrcoef}{\hat{r}}
+
+
+\begin{document}
+
+\begin{center}
+\begin{center}
+    \huge{\textbf{Mathématiques : CM}}
+\end{center}
+\end{center}
+\newpage
+
+\tableofcontents 
+
+
+\newpage
+
+
+
+\section{Sequences of functions}
+
+Let $I$ be an interval of $\mathbb{R}$ ($f_n$) a sequence of functions on $I$. \newline
+
+Sequence whose general term $f_n$ is a function $f_n \, : I \rightarrow \mathbb{R}$. \newline
+
+Modes of convergence of ($f_n$) to $f$ where $f \, : \rightarrow \mathbb{R}$. \newline
+
+Pointwise convergence :
+
+($f_n$) converges pointwise to a function $f$ if  $\forall \, x \, \in I$, $f_n(x) \underset{n \rightarrow +\infty}{\rightarrow} f(x)$
+
+Example : on $I = [0, 1], f_n(x) = x^n$
+
+\[
+\text{Let } x\in [0,1], \begin{cases}
+    \text{if } x < 1, x^n \rightarrow 0 \\
+    \text{if } x = 1, x^n \rightarrow 1
+\end{cases}
+\]
+
+Thus $f_n(x) \underset{n \rightarrow +\infty}{\rightarrow} f(x)$ with :
+
+\[
+f(x) = \begin{cases}
+    0 \text{ if } x < 1 \\
+    1 \text{ if } x = 1
+\end{cases}
+\]
+
+\[(f_n) \overset{\text{p.w}}{\rightarrow} f \text{ (i.e converges pointwise)} \]
+
+\section{Uniform convergence}
+
+Supremum of a bounded set $S$. \newline
+Let $S$ be a set, upperbounded. \newline
+
+$\exists M \in \mathbb{R}$, $\forall x \in S$, $x \leq M$ \newline
+
+Supremum of $S$ : the smallest possible $M$ denoted $Sup S$. \newline
+
+Example : $S = [0,3], Sup S = 3$ \newline
+$S_2 = [0,3[, Sup S = 3$ \newline
+
+Remark : For $[0,3]$, $Sup [0,3] = 3 = max[0,3]$ \newline
+
+For $[0,3[$ = no maximum value ($3 \notin [0,3[$) but $Sup [0,3] = 3$
+
+\section{Definition : norm $||.||_\infty$}
+
+Let $E$ be the vector space of bounded function on $I$. \newline
+
+Let $f \in E$,
+
+TODO 
+
+\subsection{Properties}
+
+\[
+\forall (f,g) \in E^2, \forall \alpha \in \mathbb{R} \\
+\]
+
+\[
+||f||_\infty = 0 \implies f = 0_E 
+\]
+
+\[
+||\alpha f||_\infty = ||\alpha|| \times ||f||_\infty
+\]
+
+\[
+||f + g||_\infty \leq ||f||_\infty + |||g|_\infty
+\] \newline
+
+$(f_n)$ converges uniformly to f if $\forall n \geq n_0, f_n - f$ is bounded $\implies ||f_n - f||_\infty \rightarrow 0$
+
+Example : on $[0,1], f_n(x) = x^n$. \newline
+
+We have seen that : $\forall x \in [0,1], f_n(x) \rightarrow f(x) = \begin{cases}
+    0 \text{ if } x < 1 \\
+    1 \text{ if } x = 1
+\end{cases}$
+
+\[(f_n) \overset{\text{p.w}}{\rightarrow} f \text{ (i.e converges pointwise)} \] 
+
+Does $(f_n)$ converges uniformly to $f$ ? \newline
+
+Let $n \in \mathbb{N}$. Let us study $f_n - f$ : \newline
+
+\[
+\forall x \in [0, 1], f_n(x) - f(x) = \begin{cases}
+    x^n \text{ if } x < 1\\
+    0 \text{ if } x = 1
+\end{cases}
+\]
+
+\[
+f_n(1) - f(1) = 1^n - 1 = 0
+\]
+
+Thus $(f_n)$ converges uniformly. \newline
+
+Example 2 : on $\mathbb{R}, f_n(x) = \frac{sin(nx)}{n}$ \newline
+
+Pointwise : let $x\in \mathbb{R}$ \newline
+
+\[
+\forall n \in \mathbb{N}, -\frac{1}{n} \leq \frac{sin(nx)}{n} \leq \frac{1}{n}
+\]
+
+\[-\frac{1}{n} \rightarrow 0 \land \frac{1}{n} \rightarrow 0\]
+
+Thus, $f_n(x) \rightarrow 0$ \newline
+
+$f_n(x) \overset{p.w}{\rightarrow} f$ (zero function) \newline
+
+$\forall x \in \mathbb{R}, f(x) = 0$ \newline
+
+Does ($f_n$) converges to $f$ ? \newline
+
+Let $n \in \mathbb{N}^*$, study $f_n - f$ \newline
+
+$\forall x \in \mathbb{R}, |f_n(x) - f(x)| = |\frac{sin(nx)}{n}|$ \newline
+
+$Sup{|f_n(x) - f(x)|, x \in \mathbb{R}} = \frac{1}{n}$
+
+\[
+\frac{1}{n} \rightarrow 0 \implies ||f_n - f||_\infty \rightarrow 0 \implies (f) \overset{\text{CVG}}{\rightarrow} f
+\] \newline
+
+Thus we have a \textbf{Uniform convergence}.
+
+\section{L2 convergence (on a closed interval [a, b]).}
+
+\subsection{Definition - piecewise continuity}
+
+A function $f = [a, b] \rightarrow \mathbb{R} $ is "piecewise" continuous on $[a, b]$ if it is continous at all $x \in [a, b]$, except maybe at a finite set of values $\{d_1, d_2, ..., d_n\}$ \newline
+
+At each discontinuous point d, there is a left limit and a right limit. \newline
+
+\[
+f(d^-) = \underset{\underset{x < d}{x \rightarrow d}}{\text{lim}} \; f(x)
+\]
+\[
+f(d^+) = \underset{\underset{x > d}{x \rightarrow d}}{\text{lim}} \; f(d)
+\]
+
+Remark : we can define $\int_{0}^{2} f(x)\,dx = \int_{0}^{1} f(x)\,dx + \int_{1}^{2} f(x)\,dx$
+
+\subsection{Norm $||.||_2$ on $[a, b]$}
+
+Let $E$ be the vector space of functions, $f$ piecewise continuous on $[a,b]$
+
+\[
+||f||_2 = \sqrt{\int_{a}^{b}f^2(x)\,dx}
+\]
+
+Remark :  $||.||_2$  comes from the scalar product $<f, g> = \int_{a}^{b}f(x)g(x)\,dx$ \newline
+
+\[ 
+||f||_2 = \sqrt{<f, f>}
+\]
+
+\subsection{Properties}
+
+$\forall (f,g) \in E^2, \forall \alpha \in \mathbb{R}$ : \newline
+
+\begin{itemize}
+    \item $||f||_2 = 0 \implies f$ is the zero function (except maybe at a finite set of points)
+    \item $||\alpha f||_2 = |\alpha| * ||f||_2$
+    \item $||f + g||_2 \leq ||f||_2 + ||g||_2$
+\end{itemize}
+
+\subsection{Definition}
+
+$(f_n)$ converges L2 to $f$ if : $||f_n - f||_2 \underset{n \rightarrow +\infty}{\rightarrow} 0$ \newline
+
+Example 1 : \newline
+
+On $[0, 1], f_n(x) = x^n$ : \newline
+
+\[(f_n) \overset{\text{p.w}}{\rightarrow} f \text{ where }  f(x) = \begin{cases}
+    0 \text{ if } x < 1 \\
+    1 \text{ if } x = 1
+\end{cases}\] 
+
+\[
+(f_n) \text{ does not converge to } f
+\]
+
+\[\text{Does } (f_n) \text{ converge L2 to } f \]
+
+Let $n \in \mathbb{N}$, 
+
+\[
+f_n(x) - f(x) = \begin{cases}
+    x^n \text{ if } x < 1  \\
+    0 \text{ if } x = 1
+\end{cases}
+\]
+
+\section{Series of functions}
+
+\subsection{Definition}
+
+Let $(f_n)$ be a sequence of functions. \newline
+
+The series $\sum{f_n}$ is the sequence $(S_n)$ :
+
+\[
+\forall n \in \mathbb{N}, S_n = f_0 + f_1 + ... + f_n = \sum_{k = 0}^{n}{f_k}
+\]
+
+Example : Power series $f_n : x \mapsto a_nx^n$, $(a_n \in \mathbb{R})$ \newline
+
+\subsection{Definition}
+
+\begin{itemize}
+    \item $\sum{f_n}$ converges point wise if $(S_n)$ converges point wise
+    \item $\sum{f_n}$ converges uniformly if $(S_n)$ converges uniformly
+    \item $\sum{f_n}$ converges L2 if $(S_n)$ converges L2
+\end{itemize}
+
+Necessary condition : 
+\begin{itemize}
+    \item $\sum f_n$ converges uniformly $\implies (f_n) \rightarrow f_n(x) = 0$ (converges uniformly)
+    \item $f_n$ does not converge to the zero function $\implies \sum{f_n}$ does not converge
+    \item $\sum f_n$ converges L2 $\implies (f_n) \rightarrow f_n(x) = 0$ (converges L2)
+\end{itemize}
+
+Sufficient condition :
+\begin{itemize}
+    \item $\sum{||f_n||_\infty}$ converge $\implies \sum{f_n}$ converge
+    \item $\sum{||f_n||_2}$ converge $\implies \sum{f_n}$ converge L2
+\end{itemize}
+
+\section{Fourier Series}
+
+Let $f$ be piecewise continuous on $\mathbb{R}$ of period $T$.
+\[
+\forall x \in \mathbb{R}, f(x + T) = f(x)
+\]
+
+\subsection{Case $T = 2\pi$}
+
+\subsubsection{Definition : Fourier series of f}
+
+\[
+FS(f) = \frac{a_0}{2} + \sum_{n\geq 1}{(a_n \, cos(nx) + b_n \,sin(nx))}
+\]
+\[
+\forall n \in \mathbb{N}, a_n = \frac{1}{\pi} \int_{-\pi}^{\pi}{f(x) \, cos(nx) \, dx}
+\]
+
+\subsubsection{Explanation}
+
+Let $\mathbb{E}$ the $\mathbb{R}$ vector space of piecewise continuous, functions, period. 
+
+\[
+<f, g> = \frac{1}{\pi}\int_{-\pi}^{\pi}{f(x)\,g(x)\,dx}
+\]
+
+Note that :
+
+\[
+||f||^2 = <f, f> = \frac{1}{\pi}\int_{-\pi}^{\pi}{f^2(x)\,dx}
+\]
+
+($||f||$ small means $f^2$ and $|f|$ is small on average) \newline
+
+Then : 
+\[
+\begin{cases}
+    a_n = <f, cos(nx)> \\
+    b_n = <f, sin(nx)> \\
+    a_0 = <f, 1> \\
+\end{cases}
+\]
+
+Let :
+\[
+\mathcal{F}_n = (\frac{1}{\sqrt{2}}, cos(x), sin(x), cos(2x), sin(2x), ..., cos(nx), sin(nx))
+\]
+
+$\mathcal{F}_n$ is an orthonormal family. \newline
+
+The partial sum $S_n$ of the series is the orthogonal projection of $f$ on $Span(\mathcal{F}_n)$ defined such as:
+
+\[
+S_n = \frac{a_0}{2} + (a_1\,cos(x) + b_1\,sin(x)) + ... + (a_n\,cos(nx) + b_n\,sin(nx))
+\]
+
+$S_n$ is the element of $Span(\mathcal{F}_n)$ which minimizes $||f - S_n||^2$ \newline
+
+$S_n$ is the function of the form :
+
+\[
+\frac{a_0}{2} + (a_1\,cos(x) + b_1\,sin(x)) + ... + (a_n\,cos(nx) + b_n\,sin(nx))
+\]
+
+$S_n$ is the element of $Span(\mathcal{F}_n)$ which minimizes $||f - S_n||^2$. \newline
+
+$S_n$ is the function of the form :
+
+\[
+\frac{a_0}{2} + (a_1 \, cos(x) + b_1 \, sin(x)) + ... + (a_n \, cos(x) + b_n sin(x))
+\]
+
+The coefficient ($a_0, ..., a_n, b_n$) which leads to the smallest $||f - S_n||^2$ are : 
+
+\[
+\begin{cases}
+    a_n = <f, cos(nx)> = \frac{1}{\pi}\int_{-\pi}^{\pi}{f(x)\,cos(x)\,dx} \\
+    b_n = <f, sin(nx)> = \frac{1}{\pi}\int_{-\pi}^{\pi}{f(x)\,sin(nx)\,dx}
+\end{cases}
+\] \newline
+
+Where $S_n$ is the approximation of $f$ and Error = $f - S_n$. \newline
+
+We get the smallest Error function with :
+
+\[
+\forall n \in \mathbb{N}, \begin{cases}
+a_n = \frac{1}{\pi}\int_{-\pi}^{\pi}{f(x)\,cos(nx)\,dx} \\
+b_n = \frac{1}{\pi}\int_{-\pi}^{\pi}{f(x)\,cos(nx)\,dx}
+\end{cases}
+\]
+\subsection{Theorms}
+
+\subsubsection{Perseval Theorms}
+
+If $f$ is piecewise of class $\mathcal{C}^1$, then $(S_n) \overset{L_2}{\rightarrow} f$ that is, $||S_n - f|| \underset{n \rightarrow +\infty}{\rightarrow} 0$. \newline
+
+Where : 
+
+\[
+||S_n - f|| = \sqrt{\frac{1}{\pi}\int_{-\pi}^{\pi}{(S_n(x) - f(x))^2 dx}}
+\]
+
+Consequence :
+
+\[
+f = S_n + \text{ Error} \implies ||f||^2 = ||S_n||^2 + ||\text{Error}||^2
+\] \newline
+
+Here, $||\text{Error}||^2 \underset{n \rightarrow +\infty}{\rightarrow} 0$ and $||f||^2 = \frac{1}{\pi}\int_{-\pi}^{\pi}{f^2(x)\,dx}$. \newline
+
+Also, $||S_n||^2 = \frac{a_0^2}{2} + (a_1^2 + b_1^2) + ... + (a_n^2 + b_n^2)$ \newline
+
+Thus, 
+
+\[
+\frac{1}{\pi}\int_{-\pi}^{\pi}{f^2(x)dx} = \frac{a_0^2}{2} + \sum_{n = 1}^{+\infty}{(a_n^2 + b_n^2)}
+\]
+
+\subsection{Dirichlet theorm}
+
+\[
+FS(f) = (S_n) \overset{\text{P.W}}{\rightarrow} \tilde{f}   
+\]
+
+Where $\tilde{f}$ is the regularized f.
+
+\[
+\forall x \in \mathbb{R}, \tilde{f}(x) = \begin{cases}
+    x \text{ if f continuous at x} \\
+    \frac{f(x^-) + f(x^+)}{2} \text{ if f not continuous at x}
+\end{cases}
+\]
+
+\[
+f = S_n + \text{ Error}
+\]
+
+\end{document}
