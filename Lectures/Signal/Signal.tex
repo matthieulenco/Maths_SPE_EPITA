@@ -410,4 +410,52 @@ Where $\tilde{f}$ is the regularized f.
 f = S_n + \text{ Error}
 \]
 
+\section{Complex Notation}\bigskip
+
+\[
+c_n = \frac{a_n - ib_n}{2} = \frac{1}{2\pi}\int_{-\pi}^{\pi}{f(x)e^{-inx}dx}
+\]
+Check :
+\[
+\frac{1}{2\pi}\int_{-\pi}^{\pi}{f(x)(cos(nx)-isin(nx)) \,dx} 
+\]
+\[
+= \frac{1}{\pi}\int{f(x)\frac{cos(nx)}{2} - f(x)\frac{sin(nx)}{2}dx} = \frac{a_n}{2} - \frac{b_n}{2}
+\]
+
+Thus : 
+
+\[
+FS(f) = \sum_{n\,=\,-\infty}^{+\infty}{c_n\,e^{inx}}
+\]
+
+\newpage
+
+We also have : 
+
+\[
+c_0\,e^{-i\times0\times x} = c_0 = \frac{a_0}{2} + \frac{b_0}{2}
+\]
+
+\[
+\forall n > 0, c_{-n}e^{-inx} + c_ne^{inx} 
+\]
+\[
+= (\frac{a_n}{2} + \frac{ib_n}{2})(cos(-nx) + isin(-nx)) + (\frac{a_n}{2} - \frac{ib_n}{2})(cos(nx) + isin(nx))
+\]
+
+Note that :
+\[
+C_{-n} = \overline{C_n} = \frac{a_n}{2} - i\frac{b_n}{2}
+\]
+
+\[
+= \frac{a_n}{2}cos(nx) - i\frac{a_n}{2}sin(nx) + i\frac{b_n}{2}cos(nx) + \frac{b_n}{2}sin(nx) 
+\]
+\[
+\;\;\;\;\;\;\;\; + \frac{a_n}{2}cos(nx) + i\frac{a_n}{2}sin(nx) - i\frac{b_n}{2}cos(nx) + \frac{b_n}{2}sin(nx)
+\]
+\[
+= a_ncos(nx) + b_nsin(nx)
+\]
 \end{document}
